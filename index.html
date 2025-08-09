@@ -83,7 +83,7 @@
                     </span>
 
                     <!-- Supplementary PDF link -->
-                    <span class="link-block">
+                    <!-- <span class="link-block">
                       <a href="static/pdfs/supplementary_material.pdf" target="_blank"
                       class="external-link button is-normal is-rounded is-dark">
                       <span class="icon">
@@ -91,7 +91,7 @@
                       </span>
                       <span>Supplementary</span>
                     </a>
-                  </span>
+                  </span> -->
 
                   <!-- Github link -->
                   <span class="link-block">
@@ -114,6 +114,17 @@
                   <span>arXiv</span>
                 </a>
               </span>
+
+              <span class="link-block">
+                <a href="#BibTeX"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                  <i class="ai ai-obp"></i>
+                  </span>
+                  <span>BibTex</span>
+                </a>
+              </span>
+
             </div>
           </div>
         </div>
@@ -123,22 +134,23 @@
 </section>
 
 
-<!-- Teaser video-->
+<!-- Teaser image-->
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <video poster="" id="tree" autoplay controls muted loop height="100%">
-        <!-- Your video here -->
-        <source src="static/videos/banner_video.mp4"
-        type="video/mp4">
-      </video>
+      <img src="CCA_visual.png" alt="Comparison of despeckling results" style="width:70vw; max-width:70vw; margin-left:calc(-35vw + 50%); margin-right:calc(-35vw + 50%); display:block;">
       <h2 class="subtitle has-text-centered">
-        Aliquam vitae elit ullamcorper tellus egestas pellentesque. Ut lacus tellus, maximus vel lectus at, placerat pretium mi. Maecenas dignissim tincidunt vestibulum. Sed consequat hendrerit nisl ut maximus. 
+        Animation of a sweep through a 3D ultrasound volume, comparing multiple reconstruction methods.
+      </h2>
+      <img src="Sim_visual.png" alt="Comparison of despeckling results" style="width:70vw; max-width:70vw; margin-left:calc(-35vw + 50%); margin-right:calc(-35vw + 50%); display:block;">
+      <h2 class="subtitle has-text-centered">
+        Animation of a single elevation plane over time, comparing multiple reconstruction methods.
       </h2>
     </div>
   </div>
 </section>
-<!-- End teaser video -->
+<!-- End teaser image -->
+
 
 <!-- Paper abstract -->
 <section class="section hero is-light">
@@ -156,6 +168,27 @@
   </div>
 </section>
 <!-- End paper abstract -->
+
+<!-- Framework section -->
+<section class="section" id="Framework">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Framework</h2>
+    <p>
+      Overview of the proposed despeckling framework. (a) Overall training process. (b) Inference using the trained despeckling model. The
+      network generates despeckled images directly from original US images.
+    </p>
+  </div>
+  <div class="container is-max-desktop has-text-centered">
+    <img src="static/images/network_overview_2.png" alt="Overview diagram" style="width:80%; max-width:800px;">
+    <h2 class="subtitle has-text-centered">
+      Overview of the proposed despeckling framework.
+    </h2>
+  </div>
+</section>
+
+<!-- Dynamic Visualization section -->
+
+<!-- Quantitative results --> 
 
 
 
@@ -218,6 +251,27 @@
 
 
 <!-- backup codes -->
+
+
+<!-- Teaser video-->
+<!-- <section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video poster="" id="tree" autoplay controls muted loop height="100%"> -->
+
+        <!-- Your video here -->
+
+        <!-- <source src="static/videos/banner_video.mp4"
+        type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        Aliquam vitae elit ullamcorper tellus egestas pellentesque. Ut lacus tellus, maximus vel lectus at, placerat pretium mi. Maecenas dignissim tincidunt vestibulum. Sed consequat hendrerit nisl ut maximus. 
+      </h2>
+    </div>
+  </div>
+</section> -->
+<!-- End teaser video -->
+
  
 <!-- Image carousel -->
 <!-- <section class="hero is-small">
