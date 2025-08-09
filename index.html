@@ -187,7 +187,7 @@
     </p>
   </div>
   <div class="container is-max-desktop has-text-centered">
-    <img src="static/images/network_overview_2.png" alt="Overview diagram" style="width:80%; max-width:800px;">
+    <img src="static/images/network_overview_2.png" alt="Overview diagram" style="width:100%; max-width:800px;">
     <h2 class="subtitle has-text-centered">
       Overview of the proposed despeckling framework.
     </h2>
@@ -197,6 +197,19 @@
 <!-- Dynamic Visualization section -->
 
 <!-- Quantitative results --> 
+ <section class="section" id="Framework">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Framework</h2>
+    <p>
+      Quantitative comparison of different methods for US speckle reduction in terms of PSNR, SSIM, Homogeneity(Hom), and LPIPS. The
+      best-performing method for each metric, trained without clean images, is highlighted in bold. The supervised method results are marked in a gray
+      shade. Note that for clinical carotid images, the Noise2Noise and supervised Noise2True methods are not applicable.
+    </p>
+  </div>
+  <div class="container is-max-desktop has-text-centered">
+    <img src="static/images/quantitative_results.png" alt="Overview diagram" style="width:100%; max-width:800px;">
+  </div>
+</section>
 
 
 
@@ -222,16 +235,16 @@
         </span>
       </button>
       <pre style="white-space:pre-wrap; word-break:break-all; padding-top:2.2em; border-radius:8px; border:1px solid #eee; background:#fafbfc;">
-      <code id="bibtex-code">@misc{li2025speckle2selfselfsupervisedultrasoundspeckle,
-              title={Speckle2Self: Self-Supervised Ultrasound Speckle Reduction Without Clean Data}, 
-              author={Xuesong Li and Nassir Navab and Zhongliang Jiang},
-              year={2025},
-              eprint={2507.06828},
-              archivePrefix={arXiv},
-              primaryClass={eess.IV},
-              url={https://arxiv.org/abs/2507.06828}, 
-            }
-      </code></pre>
+  <code id="bibtex-code">@misc{li2025speckle2selfselfsupervisedultrasoundspeckle,
+          title={Speckle2Self: Self-Supervised Ultrasound Speckle Reduction Without Clean Data}, 
+          author={Xuesong Li and Nassir Navab and Zhongliang Jiang},
+          year={2025},
+          eprint={2507.06828},
+          archivePrefix={arXiv},
+          primaryClass={eess.IV},
+          url={https://arxiv.org/abs/2507.06828}, 
+      }
+  </code></pre>
     </div>
   </div>
 </section>
