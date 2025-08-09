@@ -6,8 +6,14 @@
     "in_vivo": "In Vivo"
   },
   "methodLabels": {
+    "Input": "Noisy Input",
     "bm3d": "BM3D",
-    "input": "Noisy Input",
-    "nlm": "Non-Local Means"
+    "nlm": "NLM",
+    "obnlm": "OBNLM",
+    "srad": "SRAD",
+    "dipSingle": "Deep Image Prior",
+    "n2v": "Noise2Void",
+    "neigh2neigh": "Neighbor2Neighbor",
+    "zsn2nSingle": "Zero-Shot N2N"
   }
 }

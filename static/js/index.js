@@ -9,9 +9,15 @@ $(document).ready(function() {
 
     function initializeUI() {
         var methods = [
-            "bm3d",
-            "input",
-            "nlm"
+			"Input",
+			"bm3d",
+			"nlm",
+			"obnlm",
+			"srad",
+			"dipSingle",
+			"n2v",
+			"neigh2neigh",
+			"zsn2nSingle"
         ];
 
         var currentExample = Object.keys(exampleManifest)[0];
