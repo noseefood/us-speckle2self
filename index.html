@@ -148,7 +148,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ullamcorper tellus sed ante aliquam tempus. Etiam porttitor urna feugiat nibh elementum, et tempor dolor mattis. Donec accumsan enim augue, a vulputate nisi sodales sit amet. Proin bibendum ex eget mauris cursus euismod nec et nibh. Maecenas ac gravida ante, nec cursus dui. Vivamus purus nibh, placerat ac purus eget, sagittis vestibulum metus. Sed vestibulum bibendum lectus gravida commodo. Pellentesque auctor leo vitae sagittis suscipit.
+              Image denoising is a fundamental task in computer vision, particularly in medical ultrasound (US) imaging, where speckle noise significantly degrades image quality. Although recent advancements in deep neural networks have led to substantial improvements in denoising for natural images, these methods cannot be directly applied to US speckle noise, as it is not purely random. Instead, US speckle arises from complex wave interference within the body microstructure, making it tissue-dependent. This dependency means that obtaining two independent noisy observations of the same scene, as required by pioneering Noise2Noise, is not feasible. Additionally, blind-spot networks also cannot handle US speckle noise due to its high spatial dependency. To address this challenge, we introduce Speckle2Self, a novel self-supervised algorithm for speckle reduction using only single noisy observations. The key insight is that applying a multi-scale perturbation (MSP) operation introduces tissue-dependent variations in the speckle pattern across different scales, while preserving the shared anatomical structure. This enables effective speckle suppression by modeling the clean image as a low-rank signal and isolating the sparse noise component. To demonstrate its effectiveness, Speckle2Self is comprehensively compared with conventional filter-based denoising algorithms and SOTA learning-based methods, using both realistic simulated US images and human carotid US images. Additionally, data from multiple US machines are employed to evaluate model generalization and adaptability to images from unseen domains.
           </p>
         </div>
       </div>
@@ -159,34 +159,24 @@
 
 
 <!-- Image carousel -->
-<section class="hero is-small">
+<!-- <section class="hero is-small">
   <div class="hero-body">
     <div class="container">
       <div id="results-carousel" class="carousel results-carousel">
-       <div class="item">
+       <div class="item"> -->
+
         <!-- Your image here -->
-        <img src="static/images/carousel1.jpg" alt="MY ALT TEXT"/>
+
+        <!-- <img src="static/images/carousel1.jpg" alt="MY ALT TEXT"/>
         <h2 class="subtitle has-text-centered">
           First image description.
         </h2>
       </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel2.jpg" alt="MY ALT TEXT"/>
-        <h2 class="subtitle has-text-centered">
-          Second image description.
-        </h2>
-      </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel3.jpg" alt="MY ALT TEXT"/>
-        <h2 class="subtitle has-text-centered">
-         Third image description.
-       </h2>
-     </div>
-     <div class="item">
+     <div class="item"> -->
+
       <!-- Your image here -->
-      <img src="static/images/carousel4.jpg" alt="MY ALT TEXT"/>
+
+      <!-- <img src="static/images/carousel4.jpg" alt="MY ALT TEXT"/>
       <h2 class="subtitle has-text-centered">
         Fourth image description.
       </h2>
@@ -194,73 +184,81 @@
   </div>
 </div>
 </div>
-</section>
+</section> -->
 <!-- End image carousel -->
 
 
 
 
 <!-- Youtube video -->
-<section class="hero is-small is-light">
+<!-- <section class="hero is-small is-light">
   <div class="hero-body">
-    <div class="container">
+    <div class="container"> -->
+
       <!-- Paper video. -->
-      <h2 class="title is-3">Video Presentation</h2>
+
+      <!-- <h2 class="title is-3">Video Presentation</h2>
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
           
-          <div class="publication-video">
+          <div class="publication-video"> -->
+
             <!-- Youtube embed code here -->
-            <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+            <!-- <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </div>
         </div>
       </div>
     </div>
   </div>
-</section>
+</section> -->
 <!-- End youtube video -->
 
 
 <!-- Video carousel -->
-<section class="hero is-small">
+<!-- <section class="hero is-small">
   <div class="hero-body">
     <div class="container">
       <h2 class="title is-3">Another Carousel</h2>
       <div id="results-carousel" class="carousel results-carousel">
         <div class="item item-video1">
-          <video poster="" id="video1" autoplay controls muted loop height="100%">
+          <video poster="" id="video1" autoplay controls muted loop height="100%"> -->
+
             <!-- Your video file here -->
-            <source src="static/videos/carousel1.mp4"
+
+            <!-- <source src="static/videos/carousel1.mp4"
             type="video/mp4">
           </video>
         </div>
         <div class="item item-video2">
-          <video poster="" id="video2" autoplay controls muted loop height="100%">
+          <video poster="" id="video2" autoplay controls muted loop height="100%"> -->
+
             <!-- Your video file here -->
-            <source src="static/videos/carousel2.mp4"
+
+            <!-- <source src="static/videos/carousel2.mp4"
             type="video/mp4">
           </video>
         </div>
         <div class="item item-video3">
-          <video poster="" id="video3" autoplay controls muted loop height="100%">\
+          <video poster="" id="video3" autoplay controls muted loop height="100%">\ -->
+
             <!-- Your video file here -->
-            <source src="static/videos/carousel3.mp4"
+
+            <!-- <source src="static/videos/carousel3.mp4"
             type="video/mp4">
           </video>
         </div>
       </div>
     </div>
   </div>
-</section>
+</section> -->
 <!-- End video carousel -->
 
 
 
 
-
-
 <!-- Paper poster -->
-<section class="hero is-small is-light">
+<!-- <section class="hero is-small is-light">
   <div class="hero-body">
     <div class="container">
       <h2 class="title">Poster</h2>
@@ -270,7 +268,7 @@
         
       </div>
     </div>
-  </section>
+  </section> -->
 <!--End paper poster -->
 
 
@@ -278,7 +276,17 @@
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
-      <pre><code>BibTex Code Here</code></pre>
+      <pre><code>
+        @misc{li2025speckle2selfselfsupervisedultrasoundspeckle,
+              title={Speckle2Self: Self-Supervised Ultrasound Speckle Reduction Without Clean Data}, 
+              author={Xuesong Li and Nassir Navab and Zhongliang Jiang},
+              year={2025},
+              eprint={2507.06828},
+              archivePrefix={arXiv},
+              primaryClass={eess.IV},
+              url={https://arxiv.org/abs/2507.06828}, 
+        }
+      </code></pre>
     </div>
 </section>
 <!--End BibTex citation -->
@@ -292,7 +300,7 @@
 
           <p>
             This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
-            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
             Commons Attribution-ShareAlike 4.0 International License</a>.
           </p>
 
