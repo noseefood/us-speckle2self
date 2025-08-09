@@ -7,7 +7,7 @@
   },
   "methodLabels": {
     "Input": "Noisy Input",
-    "OurMethod_gamma1.5": "Speckle2Self",
+    "OurMethod_gamma2.0": "Speckle2Self",
     "bm3d": "BM3D",
     "nlm": "NLM",
     "obnlm": "OBNLM",
