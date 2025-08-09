@@ -10,6 +10,7 @@ $(document).ready(function() {
     function initializeUI() {
         var methods = [
 			"Input",
+			"OurMethod_gamma1.5",
 			"bm3d",
 			"nlm",
 			"obnlm",

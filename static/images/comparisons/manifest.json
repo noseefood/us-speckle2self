@@ -7,6 +7,7 @@
   },
   "methodLabels": {
     "Input": "Noisy Input",
+    "OurMethod_gamma1.5": "Speckle2Self",
     "bm3d": "BM3D",
     "nlm": "NLM",
     "obnlm": "OBNLM",
@@ -15,5 +16,6 @@
     "n2v": "Noise2Void",
     "neigh2neigh": "Neighbor2Neighbor",
     "zsn2nSingle": "Zero-Shot N2N"
+    
   }
 }
