@@ -195,6 +195,54 @@
 </section>
 
 <!-- Dynamic Visualization section -->
+ <!-- BEGIN: Method Comparison Slider -->
+<section class="section" id="method-comparison">
+  <div class="container is-max-desktop">
+    <h2 class="title">Compare Methods</h2>
+    <p>
+      Compare different despeckling methods side by side using the slider below.
+    </p>
+    <div class="columns is-centered">
+      <div class="column is-half">
+        <!-- 示例选择下拉框 -->
+        <div class="has-text-centered" style="margin-bottom:1em;">
+          <div style="display:inline-block;">
+            <div class="select is-small is-rounded" style="min-width:130px;">
+              <select id="example-dropdown">
+                <option>Loading examples...</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <!-- 方法对比下拉框 -->
+        <div class="has-text-centered" style="margin-bottom:1em;">
+          <div style="display:inline-flex; align-items:center; gap:0.5em;">
+            <div class="select is-small is-rounded" style="min-width:110px;">
+              <select id="juxtapose-method-left"></select>
+            </div>
+            <span style="font-weight:500; font-size:1em;">vs</span>
+            <div class="select is-small is-rounded" style="min-width:110px;">
+              <select id="juxtapose-method-right"></select>
+            </div>
+          </div>
+        </div>
+        <!-- B-plane 滑块选择 -->
+        <div class="has-text-centered" style="margin-bottom:1em;">
+          <label for="frame-slider" style="margin-right:0.5em;">B-plane:</label>
+          <div style="display:inline-flex; align-items:center; gap:0.5em; width:65%;">
+            <input id="frame-slider" class="slider is-small is-rounded" step="1" min="0" max="19" value="0" type="range" style="flex:1;">
+            <span id="frame-slider-value" style="min-width:2em; text-align:center;">0</span>
+          </div>
+        </div>
+        <div id="juxtapose-slider-container" style="max-width:600px; margin:0 auto;"></div>
+      </div>
+    </div>
+    <p class="has-text-centered" style="margin-top:1em;">Drag the slider to compare two reconstruction methods side by side. Use the slider to select the B-plane inside the 3D volume.</p>
+  </div>
+</section>
+<!-- END: Method Comparison Slider -->
+
+ 
 
 <!-- Quantitative results --> 
  <section class="section" id="Framework">
