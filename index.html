@@ -200,6 +200,24 @@
 <!-- Dynamic Visualization section -->
  <!-- BEGIN: Method Comparison Slider -->
 <section class="section" id="method-comparison">
+  <style>
+    #method-comparison {
+      padding-top: 1rem;   /* 缩小上下空白 */
+      padding-bottom: 1rem;
+    }
+    #method-comparison .column.is-half {
+      max-width: 400px;    /* 限制内容最大宽度 */
+    }
+    #method-comparison select,
+    #method-comparison input[type="range"] {
+      transform: scale(0.9); /* 缩小控件 */
+    }
+    #method-comparison p {
+      font-size: 0.9em;    /* 缩小文字 */
+      margin-top: 0.5em;   /* 减少段落间距 */
+      margin-bottom: 0.5em;
+    }
+  </style>
   <div class="container is-max-desktop">
     <h2 class="title">Compare Methods</h2>
     <p>
@@ -240,7 +258,7 @@
         <div id="juxtapose-slider-container" style="max-width:600px; margin:0 auto;"></div>
       </div>
     </div>
-    <p class="has-text-centered" style="margin-top:1em;">Drag the slider to compare two reconstruction methods side by side. Use the slider to select the B-plane inside the 3D volume.</p>
+    <p class="has-text-centered" style="margin-top:1em;">Drag the slider to compare the results of different despeckling methods side by side. Use the slider to select different B-mode slices.</p>
   </div>
 </section>
 <!-- END: Method Comparison Slider -->
@@ -251,11 +269,12 @@
  <section class="section" id="Framework">
   <div class="container is-max-desktop content">
     <h2 class="title">Quantitative Results</h2>
-    <p>
-      Quantitative comparison of different methods for US speckle reduction in terms of PSNR, SSIM, Homogeneity(Hom), and LPIPS. The
-      best-performing method for each metric, trained without clean images, is highlighted in bold. The supervised method results are marked in a gray
-      shade. Note that for clinical carotid images, the Noise2Noise and supervised Noise2True methods are not applicable.
-    </p>
+      <p>
+        Quantitative comparison of different methods for US speckle reduction in terms of PSNR, SSIM, Homogeneity (Hom), and LPIPS. 
+        The best-performing method for each metric, trained without clean images, is highlighted in <strong>bold</strong>. 
+        The supervised method results are marked in a <span style="background-color: #d9d9d9;">gray shade</span>. 
+        Note that for clinical carotid images, the Noise2Noise and supervised Noise2True methods are not applicable.
+      </p>
   </div>
   <div class="container is-max-desktop has-text-centered">
     <img src="static/images/quantitative_results.png" alt="Overview diagram" style="width:140%; max-width:1000px;">
@@ -324,9 +343,8 @@
         <div class="content">
 
           <p>
-            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
-            <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page, and also draws inspiration from the <a href="https://3d-ultrasound-diffusion.github.io/" target="_blank">3D Ultrasound Diffusion</a> project page.
+            <br> This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
           </p>
 
         </div>
