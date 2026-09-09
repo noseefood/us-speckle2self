@@ -7,6 +7,68 @@ $(document).ready(function() {
     var methodLabels = {};
     var manifestLoaded = false;
 
+    // Auto sweep: the handle drifts back and forth around the centre line until
+    // the visitor grabs it, after which it stays wherever they leave it.
+    var AUTO_PERIOD = 6000;    // ms for one full left-right-left cycle
+    var AUTO_AMPLITUDE = 22;   // percent of the width to either side of centre
+    var autoSlide = true;
+    var autoFrame = null;
+    var currentSlider = null;
+
+    function setSliderPosition(slider, percent) {
+        if (percent < 1) percent = 1;
+        if (percent > 99) percent = 99;
+        var left = percent.toFixed(2) + '%';
+        slider.handle.style.left = left;
+        slider.leftImage.style.width = left;
+        slider.rightImage.style.width = (100 - percent).toFixed(2) + '%';
+        slider.sliderPosition = left;
+    }
+
+    function stopAutoSlide() {
+        if (autoFrame !== null) {
+            window.cancelAnimationFrame(autoFrame);
+            autoFrame = null;
+        }
+    }
+
+    function disableAutoSlide() {
+        autoSlide = false;
+        stopAutoSlide();
+    }
+
+    function startAutoSlide(slider, startPercent) {
+        stopAutoSlide();
+        if (!autoSlide || !slider || !window.requestAnimationFrame) return;
+
+        // Pick the phase that matches where the handle already sits, so switching
+        // method or frame does not make the sweep jump.
+        var offset = (startPercent - 50) / AUTO_AMPLITUDE;
+        if (offset > 1) offset = 1;
+        if (offset < -1) offset = -1;
+        var phase = Math.asin(offset);
+        var lastTs = null;
+
+        function step(ts) {
+            if (!autoSlide || slider !== currentSlider) {
+                autoFrame = null;
+                return;
+            }
+            // The images load asynchronously; hold the phase until JXSlider is built.
+            if (slider.handle && slider.leftImage && slider.rightImage) {
+                if (lastTs !== null) {
+                    var dt = ts - lastTs;
+                    if (dt > 100) dt = 16; // returning from a hidden tab
+                    phase += dt / AUTO_PERIOD * 2 * Math.PI;
+                }
+                setSliderPosition(slider, 50 + AUTO_AMPLITUDE * Math.sin(phase));
+            }
+            lastTs = ts;
+            autoFrame = window.requestAnimationFrame(step);
+        }
+        autoFrame = window.requestAnimationFrame(step);
+    }
+
     function initializeUI() {
         var methods = [
 			"Input",
@@ -66,11 +128,13 @@ $(document).ready(function() {
                 }
             }
             preloadImages([leftSrc, rightSrc], function() {
+                stopAutoSlide();
+                currentSlider = null;
                 $('#juxtapose-slider').remove();
                 var sliderDiv = $('<div></div>').attr('id', 'juxtapose-slider').css('width', '100%');
                 $('#juxtapose-slider-container').append(sliderDiv);
                 setTimeout(function() {
-                    new juxtapose.JXSlider('#juxtapose-slider', [
+                    currentSlider = new juxtapose.JXSlider('#juxtapose-slider', [
                         {
                             src: leftSrc,
                             label: methodLabels[left] || left,
@@ -88,6 +152,7 @@ $(document).ready(function() {
                         startingPosition: startingPosition,
                         makeResponsive: true
                     });
+                    startAutoSlide(currentSlider, parseFloat(startingPosition));
                 }, 0);
             });
         }
@@ -136,6 +201,9 @@ $(document).ready(function() {
         }
 
         if ($('#juxtapose-slider-container').length) {
+            // Bound on the container, which outlives each rebuilt JXSlider.
+            $('#juxtapose-slider-container').on('mousedown touchstart keydown', disableAutoSlide);
+
             if ($('#example-dropdown').length === 0) {
                 var $dropdown = $('<div class="select is-small is-rounded" style="min-width:130px; margin-bottom:1em;"><select id="example-dropdown"></select></div>');
                 $('#juxtapose-slider-container').before($dropdown);
