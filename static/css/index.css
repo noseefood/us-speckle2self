@@ -135,3 +135,23 @@ body {
 
 
 
+
+/* Method Comparison slider: the two method names normally live inside the
+   clipped left/right panels, so the sweeping divider crops and covers them.
+   index.js re-parents them onto .jx-slider; these rules pin each one to its
+   own outer edge, above the handle (z-index 15). */
+#juxtapose-slider div.jx-label.jx-label-pinned {
+  position: absolute;
+  top: 0;
+  float: none;
+  z-index: 20;
+  pointer-events: none;
+}
+
+#juxtapose-slider div.jx-label.jx-label-pinned-left {
+  left: 0;
+}
+
+#juxtapose-slider div.jx-label.jx-label-pinned-right {
+  right: 0;
+}

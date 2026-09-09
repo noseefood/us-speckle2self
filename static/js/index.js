@@ -10,7 +10,7 @@ $(document).ready(function() {
     // Auto sweep: the handle drifts back and forth around the centre line until
     // the visitor grabs it, after which it stays wherever they leave it.
     var AUTO_PERIOD = 6000;    // ms for one full left-right-left cycle
-    var AUTO_AMPLITUDE = 22;   // percent of the width to either side of centre
+    var AUTO_AMPLITUDE = 45;   // percent of the width to either side of centre
     var autoSlide = true;
     var autoFrame = null;
     var currentSlider = null;
@@ -23,6 +23,32 @@ $(document).ready(function() {
         slider.leftImage.style.width = left;
         slider.rightImage.style.width = (100 - percent).toFixed(2) + '%';
         slider.sliderPosition = left;
+    }
+
+    // JXSlider puts each method name inside its own image panel, which is
+    // width-animated and overflow:hidden -- so the sweeping divider crops the
+    // name and passes over it. Re-parent both onto .jx-slider, where the CSS
+    // pins them to the outer edges above the handle.
+    function pinLabels(slider) {
+        if (!slider || !slider.slider) return false;
+        var $labels = $(slider.slider).find('.jx-label');
+        if (!$labels.length) return false;
+        $labels.each(function() {
+            var side = $(this).closest('.jx-image').hasClass('jx-left') ? 'left' : 'right';
+            $(this).addClass('jx-label-pinned jx-label-pinned-' + side);
+            slider.slider.appendChild(this);
+        });
+        return true;
+    }
+
+    // The labels only exist once both images have loaded and _init has run.
+    function pinLabelsWhenReady(slider) {
+        var tries = 0;
+        (function attempt() {
+            if (slider !== currentSlider) return;
+            if (pinLabels(slider)) return;
+            if (++tries < 60) window.setTimeout(attempt, 50);
+        })();
     }
 
     function stopAutoSlide() {
@@ -152,6 +178,7 @@ $(document).ready(function() {
                         startingPosition: startingPosition,
                         makeResponsive: true
                     });
+                    pinLabelsWhenReady(currentSlider);
                     startAutoSlide(currentSlider, parseFloat(startingPosition));
                 }, 0);
             });
