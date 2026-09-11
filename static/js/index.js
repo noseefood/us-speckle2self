@@ -14,6 +14,7 @@ $(document).ready(function() {
     var autoSlide = true;
     var autoFrame = null;
     var currentSlider = null;
+    var sliderRequest = 0;     // bumped per rebuild; only the newest may touch the DOM
 
     function setSliderPosition(slider, percent) {
         if (percent < 1) percent = 1;
@@ -153,14 +154,19 @@ $(document).ready(function() {
                     }
                 }
             }
+            var request = ++sliderRequest;
             preloadImages([leftSrc, rightSrc], function() {
+                // Dragging the frame slider fires many rebuilds; a slower,
+                // older preload must not replace the newer frame.
+                if (request !== sliderRequest) return;
                 stopAutoSlide();
                 currentSlider = null;
                 $('#juxtapose-slider').remove();
                 var sliderDiv = $('<div></div>').attr('id', 'juxtapose-slider').css('width', '100%');
                 $('#juxtapose-slider-container').append(sliderDiv);
                 setTimeout(function() {
-                    currentSlider = new juxtapose.JXSlider('#juxtapose-slider', [
+                    if (request !== sliderRequest) return;
+                    var slider = new juxtapose.JXSlider('#juxtapose-slider', [
                         {
                             src: leftSrc,
                             label: methodLabels[left] || left,
@@ -178,6 +184,14 @@ $(document).ready(function() {
                         startingPosition: startingPosition,
                         makeResponsive: true
                     });
+                    // JXSlider resolves '#juxtapose-slider' only once its images
+                    // load, so a superseded instance would build into the newer
+                    // container and stack a second slider under the first.
+                    var build = slider._onLoaded;
+                    slider._onLoaded = function() {
+                        if (slider === currentSlider) build.call(slider);
+                    };
+                    currentSlider = slider;
                     pinLabelsWhenReady(currentSlider);
                     startAutoSlide(currentSlider, parseFloat(startingPosition));
                 }, 0);
