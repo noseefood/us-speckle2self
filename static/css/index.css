@@ -5,6 +5,7 @@
   --accent-soft: #e8f0fd;
   --surface-alt: #f6f7f9;
   --border: #e3e6eb;
+  --shade: #eceef1;
   --radius: 10px;
   --shadow: 0 1px 2px rgba(16, 24, 40, 0.06), 0 4px 16px rgba(16, 24, 40, 0.06);
 }
@@ -138,7 +139,7 @@ body {
 }
 
 .gray-shade {
-  background-color: #d9d9d9;
+  background-color: var(--shade);
   padding: 0 0.2em;
   border-radius: 3px;
 }
@@ -286,6 +287,12 @@ body {
   .results-table .col-method {
     box-shadow: 1px 0 0 var(--border);
   }
+  .results-table-wrap {
+    padding: 0.6rem 0.5rem;
+  }
+  .table-legend {
+    padding: 0 0.5rem;
+  }
 }
 
 
@@ -416,14 +423,19 @@ body {
 
 .results-table-wrap {
   overflow-x: auto;
+  padding: 0.9rem 1.1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #fff;
+  box-shadow: var(--shadow);
 }
 
 .results-table {
   width: 100%;
   min-width: 760px;
   border-collapse: collapse;
-  border-top: 2px solid var(--text);
-  border-bottom: 2px solid var(--text);
+  border-top: 1.5px solid #3b4553;
+  border-bottom: 1.5px solid #3b4553;
   background: transparent;
   color: var(--text);
   font-size: 0.85rem;
@@ -448,8 +460,6 @@ table.results-table td {
   position: relative;
   padding-top: 0.6em;
   padding-bottom: 0.5em;
-  font-family: 'Google Sans', 'Noto Sans', sans-serif;
-  font-size: 0.9rem;
 }
 
 /* Trimmed rule under each dataset group (booktabs \cmidrule). */
@@ -465,7 +475,7 @@ table.results-table td {
 
 .results-table thead tr:last-child th,
 .results-table thead th[rowspan] {
-  border-bottom: 1px solid var(--text);
+  border-bottom: 1px solid #3b4553;
 }
 
 .results-table thead tr:last-child th {
@@ -511,6 +521,7 @@ table.results-table td {
 
 .results-table thead .col-method {
   z-index: 2;
+  font-weight: 600;
 }
 
 .results-table tbody th[title] {
@@ -518,7 +529,7 @@ table.results-table td {
 }
 
 .results-table td.shade {
-  background: #ececec;
+  background: var(--shade);
 }
 
 .results-table td.best {
@@ -542,8 +553,8 @@ table.results-table td {
   display: grid;
   grid-template-columns: max-content 1fr;
   gap: 0.35rem 0.9rem;
-  max-width: 880px;
-  margin: 1.1rem auto 0;
+  margin: 1.1rem 0 0;
+  padding: 0 1.6rem;
   color: var(--text-muted);
   font-size: 0.8rem;
   line-height: 1.5;
