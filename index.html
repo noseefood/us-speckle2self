@@ -232,14 +232,273 @@
       The supervised method results are marked in a <span class="gray-shade">gray shade</span>.
       Note that for clinical carotid images, the Noise2Noise and supervised Noise2True methods are not applicable.
     </p>
-    <figure class="paper-figure">
-      <div class="figure-scroll figure-scroll-table">
-        <a href="static/images/quantitative_results.png" target="_blank">
-          <img src="static/images/quantitative_results.png" alt="Quantitative comparison table">
-        </a>
-      </div>
-      <figcaption class="figure-note">Click the table to open it at full resolution.</figcaption>
-    </figure>
+    <div class="results-table-wrap">
+    <table class="results-table">
+      <thead>
+        <tr>
+          <th rowspan="2" class="col-method">Method</th>
+          <th colspan="4" class="group-head">S-I Data</th>
+          <th colspan="4" class="group-head">S-II Data</th>
+          <th colspan="4" class="group-head">S-III Data</th>
+          <th class="group-head">Carotid</th>
+          <th rowspan="2" class="col-time">Time</th>
+        </tr>
+        <tr>
+          <th class="group-start">PSNR&thinsp;&uarr;</th>
+          <th>SSIM&thinsp;&uarr;</th>
+          <th>Hom&thinsp;&uarr;</th>
+          <th>LPIPS&thinsp;&darr;</th>
+          <th class="group-start">PSNR&thinsp;&uarr;</th>
+          <th>SSIM&thinsp;&uarr;</th>
+          <th>Hom&thinsp;&uarr;</th>
+          <th>LPIPS&thinsp;&darr;</th>
+          <th class="group-start">PSNR&thinsp;&uarr;</th>
+          <th>SSIM&thinsp;&uarr;</th>
+          <th>Hom&thinsp;&uarr;</th>
+          <th>LPIPS&thinsp;&darr;</th>
+          <th class="group-start">Hom&thinsp;&uarr;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="group-row"><th colspan="15" scope="colgroup"><span>Non-learning based</span></th></tr>
+        <tr>
+          <th scope="row" class="col-method">SRAD<span class="cite">Yu and Acton (2002)</span></th>
+          <td class="group-start best">19.40</td>
+          <td>0.734</td>
+          <td>0.763</td>
+          <td>0.411</td>
+          <td class="group-start best">19.57</td>
+          <td>0.735</td>
+          <td>0.768</td>
+          <td>0.419</td>
+          <td class="group-start">20.81</td>
+          <td>0.880</td>
+          <td>0.874</td>
+          <td>0.246</td>
+          <td class="group-start">0.705</td>
+          <td class="col-time">6 s</td>
+        </tr>
+        <tr>
+          <th scope="row" class="col-method">NLM<span class="cite">Buades et al. (2005)</span></th>
+          <td class="group-start best">19.40</td>
+          <td>0.736</td>
+          <td>0.714</td>
+          <td>0.417</td>
+          <td class="group-start">19.52</td>
+          <td>0.738</td>
+          <td>0.740</td>
+          <td>0.428</td>
+          <td class="group-start">20.94</td>
+          <td>0.881</td>
+          <td>0.839</td>
+          <td>0.310</td>
+          <td class="group-start">0.691</td>
+          <td class="col-time">80 ms</td>
+        </tr>
+        <tr>
+          <th scope="row" class="col-method">BM3D<span class="cite">Dabov et al. (2007)</span></th>
+          <td class="group-start">19.26</td>
+          <td>0.684</td>
+          <td>0.691</td>
+          <td>0.397</td>
+          <td class="group-start">19.34</td>
+          <td>0.679</td>
+          <td>0.694</td>
+          <td>0.407</td>
+          <td class="group-start">21.01</td>
+          <td>0.875</td>
+          <td>0.844</td>
+          <td>0.245</td>
+          <td class="group-start">0.656</td>
+          <td class="col-time">3 s</td>
+        </tr>
+        <tr>
+          <th scope="row" class="col-method">OBNLM<span class="cite">Coupé et al. (2009)</span></th>
+          <td class="group-start">18.84</td>
+          <td>0.703</td>
+          <td>0.577</td>
+          <td>0.470</td>
+          <td class="group-start">18.88</td>
+          <td>0.702</td>
+          <td>0.621</td>
+          <td>0.484</td>
+          <td class="group-start">21.49</td>
+          <td>0.885</td>
+          <td>0.774</td>
+          <td>0.299</td>
+          <td class="group-start">0.460</td>
+          <td class="col-time">12 s</td>
+        </tr>
+        <tr class="group-row"><th colspan="15" scope="colgroup"><span>Supervised (Noisy-Clean Pairs)</span></th></tr>
+        <tr class="supervised-row">
+          <th scope="row" class="col-method">Noise2True</th>
+          <td class="group-start shade">23.33</td>
+          <td class="shade">0.936</td>
+          <td class="shade">0.910</td>
+          <td class="shade">0.059</td>
+          <td class="group-start shade">23.25</td>
+          <td class="shade">0.937</td>
+          <td class="shade">0.923</td>
+          <td class="shade">0.049</td>
+          <td class="group-start shade">27.66</td>
+          <td class="shade">0.973</td>
+          <td class="shade">0.941</td>
+          <td class="shade">0.062</td>
+          <td class="group-start"><span class="na" title="Not applicable">&times;</span></td>
+          <td class="col-time">6 ms</td>
+        </tr>
+        <tr class="group-row"><th colspan="15" scope="colgroup"><span>Self-supervised (Noisy-Noisy Pairs)</span></th></tr>
+        <tr>
+          <th scope="row" class="col-method">N2N<span class="cite">Lehtinen (2018)</span></th>
+          <td class="group-start">18.05</td>
+          <td>0.705</td>
+          <td>0.683</td>
+          <td>0.369</td>
+          <td class="group-start">17.74</td>
+          <td>0.691</td>
+          <td>0.689</td>
+          <td>0.410</td>
+          <td class="group-start">21.99</td>
+          <td>0.895</td>
+          <td>0.820</td>
+          <td>0.240</td>
+          <td class="group-start"><span class="na" title="Not applicable">&times;</span></td>
+          <td class="col-time">6 ms</td>
+        </tr>
+        <tr class="group-row"><th colspan="15" scope="colgroup"><span>Self-supervised (Single Noisy Images)</span></th></tr>
+        <tr>
+          <th scope="row" class="col-method">DIP(*)<span class="cite">Ulyanov et al. (2018)</span></th>
+          <td class="group-start">18.87</td>
+          <td>0.543</td>
+          <td>0.515</td>
+          <td>0.484</td>
+          <td class="group-start">18.93</td>
+          <td>0.523</td>
+          <td>0.531</td>
+          <td>0.501</td>
+          <td class="group-start">20.98</td>
+          <td>0.831</td>
+          <td>0.747</td>
+          <td>0.323</td>
+          <td class="group-start">0.436</td>
+          <td class="col-time"><span class="na" title="Not applicable">&times;</span></td>
+        </tr>
+        <tr>
+          <th scope="row" class="col-method">N2V<span class="cite">Krull et al. (2019)</span></th>
+          <td class="group-start">17.62</td>
+          <td>0.311</td>
+          <td>0.312</td>
+          <td>0.561</td>
+          <td class="group-start">17.55</td>
+          <td>0.314</td>
+          <td>0.339</td>
+          <td>0.551</td>
+          <td class="group-start">19.87</td>
+          <td>0.613</td>
+          <td>0.573</td>
+          <td>0.388</td>
+          <td class="group-start">0.215</td>
+          <td class="col-time">6 ms</td>
+        </tr>
+        <tr>
+          <th scope="row" class="col-method">N2S(*)<span class="cite">Batson and Royer (2019)</span></th>
+          <td class="group-start">17.32</td>
+          <td>0.303</td>
+          <td>0.308</td>
+          <td>0.549</td>
+          <td class="group-start">17.64</td>
+          <td>0.310</td>
+          <td>0.339</td>
+          <td>0.545</td>
+          <td class="group-start">19.69</td>
+          <td>0.587</td>
+          <td>0.576</td>
+          <td>0.399</td>
+          <td class="group-start">0.227</td>
+          <td class="col-time"><span class="na" title="Not applicable">&times;</span></td>
+        </tr>
+        <tr>
+          <th scope="row" class="col-method">N2S<span class="cite">Batson and Royer (2019)</span></th>
+          <td class="group-start">18.14</td>
+          <td>0.346</td>
+          <td>0.316</td>
+          <td>0.543</td>
+          <td class="group-start">17.64</td>
+          <td>0.344</td>
+          <td>0.330</td>
+          <td>0.547</td>
+          <td class="group-start">20.41</td>
+          <td>0.657</td>
+          <td>0.573</td>
+          <td>0.399</td>
+          <td class="group-start">0.184</td>
+          <td class="col-time">6 ms</td>
+        </tr>
+        <tr>
+          <th scope="row" class="col-method">Neighbor2Neighbor<span class="cite">Huang et al. (2021)</span></th>
+          <td class="group-start">17.63</td>
+          <td>0.319</td>
+          <td>0.310</td>
+          <td>0.556</td>
+          <td class="group-start">17.79</td>
+          <td>0.321</td>
+          <td>0.339</td>
+          <td>0.549</td>
+          <td class="group-start">20.19</td>
+          <td>0.637</td>
+          <td>0.574</td>
+          <td>0.384</td>
+          <td class="group-start">0.213</td>
+          <td class="col-time">6 ms</td>
+        </tr>
+        <tr>
+          <th scope="row" class="col-method">ZS-N2N(*)<span class="cite">Mansour and Heckel (2023)</span></th>
+          <td class="group-start">17.58</td>
+          <td>0.315</td>
+          <td>0.312</td>
+          <td>0.557</td>
+          <td class="group-start">17.71</td>
+          <td>0.318</td>
+          <td>0.340</td>
+          <td>0.550</td>
+          <td class="group-start">20.04</td>
+          <td>0.625</td>
+          <td>0.576</td>
+          <td>0.384</td>
+          <td class="group-start">0.214</td>
+          <td class="col-time"><span class="na" title="Not applicable">&times;</span></td>
+        </tr>
+        <tr class="ours-row">
+          <th scope="row" class="col-method">Speckle2Self (our)</th>
+          <td class="group-start">18.59</td>
+          <td class="best">0.771</td>
+          <td class="best">0.803</td>
+          <td class="best">0.231</td>
+          <td class="group-start">18.94</td>
+          <td class="best">0.777</td>
+          <td class="best">0.792</td>
+          <td class="best">0.233</td>
+          <td class="group-start best">22.90</td>
+          <td class="best">0.922</td>
+          <td class="best">0.876</td>
+          <td class="best">0.173</td>
+          <td class="group-start best">0.725</td>
+          <td class="col-time">7 ms</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <dl class="table-legend">
+      <dt>S-I / S-II / S-III</dt>
+      <dd>Simulated datasets with paired clean and speckled images. S-I includes heavy artifacts beyond speckle; S-II and S-III have fewer artifacts, with S-II sharing similar shapes with S-I and S-III featuring different shapes.</dd>
+      <dt>Carotid</dt>
+      <dd>In vivo carotid images acquired with a Clarius L7 scanner, without clean targets; evaluated with the no-reference GLCM homogeneity (Hom).</dd>
+      <dt>(*)</dt>
+      <dd>The method needs to be retrained in zero-shot self-supervised mode for each image.</dd>
+      <dt>&times;</dt>
+      <dd>Not applicable.</dd>
+    </dl>
+    <p class="table-note"><span class="is-hidden-tablet">Swipe the table sideways to see every column. </span><a href="static/images/quantitative_results.png" target="_blank">View the original table image</a>.</p>
   </div>
 </section>
 

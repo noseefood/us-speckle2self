@@ -202,26 +202,68 @@ body {
 /* Wide multi-panel figures stay legible on phones: keep a readable
    minimum width and let the frame scroll sideways instead of shrinking. */
 @media screen and (max-width: 768px) {
-  .section {
-    padding: 3rem 1rem;
-  }
-  .publication-hero .hero-body {
-    padding: 3rem 1rem 1.5rem;
-  }
-  .publication-authors {
-    font-size: 1.1rem;
-  }
-  .publication-affiliations {
-    font-size: 0.9rem;
-  }
   .section-lead {
     text-align: left;
   }
   .figure-scroll img {
     min-width: 720px;
   }
-  .figure-scroll-table img {
-    min-width: 900px;
+  /* Denser phone layout: Bulma sizes are rem-based, so a smaller root
+     scales titles, body text, buttons and spacing together. */
+  html {
+    font-size: 14px;
+  }
+  .section {
+    padding: 2.25rem 0.9rem;
+  }
+  .publication-hero .hero-body {
+    padding: 2.25rem 0.9rem 1rem;
+  }
+  .publication-venue {
+    margin-bottom: 0.9rem;
+    font-size: 0.85rem;
+  }
+  .title.publication-title:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+  .publication-authors {
+    font-size: 1.05rem;
+  }
+  .publication-affiliations {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+  .publication-links {
+    margin-top: 1.1rem;
+  }
+  .publication-links .button {
+    font-size: 0.9rem;
+  }
+  .section-title {
+    font-size: 1.6rem !important;
+    margin-bottom: 1.25rem !important;
+  }
+  .section-title::after {
+    margin-top: 0.5rem;
+  }
+  .section-lead {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+  }
+  .abstract-text {
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+  .paper-figure {
+    margin-bottom: 1.5rem;
+  }
+  .figure-scroll {
+    padding: 0.6rem;
+  }
+  .paper-figure figcaption {
+    font-size: 0.85rem;
+    margin-top: 0.6rem;
   }
   .compare-card {
     padding: 1rem 0.75rem;
@@ -361,6 +403,148 @@ body {
 
 #juxtapose-slider div.jx-label.jx-label-pinned-right {
   right: 8px;
+}
+
+
+/* ---------- Results table ---------- */
+
+.results-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #fff;
+  box-shadow: var(--shadow);
+}
+
+.results-table {
+  width: 100%;
+  min-width: 880px;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+
+/* 'table.' outranks Bulma's `table td:not([align]) { text-align: inherit }`. */
+table.results-table th,
+table.results-table td {
+  padding: 0.5em 0.45em;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  border-bottom: 1px solid #eef0f3;
+}
+
+.results-table thead th {
+  background: #fafbfc;
+  font-weight: 600;
+  border-bottom: 1px solid var(--border);
+}
+
+.results-table thead .group-head {
+  font-family: 'Google Sans', 'Noto Sans', sans-serif;
+  font-size: 0.85rem;
+  border-left: 1px solid var(--border);
+}
+
+.results-table .group-start {
+  border-left: 1px solid var(--border);
+}
+
+/* Method names stay visible while the numbers scroll sideways. */
+.results-table .col-method {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  min-width: 150px;
+  text-align: left;
+  white-space: normal;
+  font-weight: 600;
+  background: #fff;
+  box-shadow: 1px 0 0 var(--border);
+}
+
+.results-table thead .col-method {
+  z-index: 2;
+  background: #fafbfc;
+}
+
+.results-table .cite {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.results-table .group-row th {
+  padding: 0.4em 0.75em;
+  text-align: left;
+  background: var(--surface-alt);
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.results-table .group-row th span {
+  position: sticky;
+  left: 0.75em;
+}
+
+.results-table td.shade {
+  background: #ececec;
+}
+
+.results-table td.best {
+  font-weight: 700;
+}
+
+.results-table .ours-row th,
+.results-table .ours-row td {
+  background: var(--accent-soft);
+}
+
+.results-table .ours-row .col-method {
+  color: var(--accent);
+}
+
+.results-table tbody tr:last-child th,
+.results-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.results-table .na {
+  color: #9aa3ad;
+}
+
+.table-legend {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.35rem 0.9rem;
+  max-width: 880px;
+  margin: 1.1rem auto 0;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.table-legend dt {
+  color: var(--text);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.table-legend dd {
+  margin: 0;
+}
+
+.table-note {
+  margin-top: 0.75rem;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.8rem;
 }
 
 
