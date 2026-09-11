@@ -281,6 +281,11 @@ body {
     padding-left: 0.7em;
     padding-right: 1.9em;
   }
+  /* Only phones scroll the table, so only they need an edge on the
+     sticky method column; desktop keeps the rules-only look. */
+  .results-table .col-method {
+    box-shadow: 1px 0 0 var(--border);
+  }
 }
 
 
@@ -407,49 +412,90 @@ body {
 
 
 /* ---------- Results table ---------- */
+/* Booktabs look, like the paper's table: horizontal rules only. */
 
 .results-table-wrap {
   overflow-x: auto;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: #fff;
-  box-shadow: var(--shadow);
 }
 
 .results-table {
   width: 100%;
-  min-width: 880px;
-  border-collapse: separate;
-  border-spacing: 0;
-  font-size: 0.8rem;
-  font-variant-numeric: tabular-nums;
+  min-width: 760px;
+  border-collapse: collapse;
+  border-top: 2px solid var(--text);
+  border-bottom: 2px solid var(--text);
+  background: transparent;
   color: var(--text);
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
 }
 
 /* 'table.' outranks Bulma's `table td:not([align]) { text-align: inherit }`. */
 table.results-table th,
 table.results-table td {
-  padding: 0.5em 0.45em;
+  padding: 0.42em 0.5em;
+  border: 0;
   text-align: center;
   vertical-align: middle;
   white-space: nowrap;
-  border-bottom: 1px solid #eef0f3;
 }
 
 .results-table thead th {
-  background: #fafbfc;
   font-weight: 600;
-  border-bottom: 1px solid var(--border);
 }
 
 .results-table thead .group-head {
+  position: relative;
+  padding-top: 0.6em;
+  padding-bottom: 0.5em;
   font-family: 'Google Sans', 'Noto Sans', sans-serif;
-  font-size: 0.85rem;
-  border-left: 1px solid var(--border);
+  font-size: 0.9rem;
 }
 
+/* Trimmed rule under each dataset group (booktabs \cmidrule). */
+.results-table thead .group-head::after {
+  content: "";
+  position: absolute;
+  left: 0.6em;
+  right: 0.6em;
+  bottom: 0;
+  height: 1px;
+  background: #9aa3ad;
+}
+
+.results-table thead tr:last-child th,
+.results-table thead th[rowspan] {
+  border-bottom: 1px solid var(--text);
+}
+
+.results-table thead tr:last-child th {
+  padding-top: 0.45em;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* Breathing room between dataset groups instead of vertical lines. */
 .results-table .group-start {
-  border-left: 1px solid var(--border);
+  padding-left: 1.1em;
+}
+
+.results-table .group-row th {
+  padding: 0.75em 0.5em 0.2em;
+  border-top: 1px solid #d5d9df;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-align: left;
+}
+
+.results-table tbody tr.group-row:first-child th {
+  border-top: 0;
+}
+
+.results-table .group-row th span {
+  position: sticky;
+  left: 0.5em;
 }
 
 /* Method names stay visible while the numbers scroll sideways. */
@@ -457,40 +503,18 @@ table.results-table td {
   position: sticky;
   left: 0;
   z-index: 1;
-  min-width: 150px;
-  text-align: left;
-  white-space: normal;
-  font-weight: 600;
+  padding-right: 1em;
   background: #fff;
-  box-shadow: 1px 0 0 var(--border);
+  font-weight: 500;
+  text-align: left;
 }
 
 .results-table thead .col-method {
   z-index: 2;
-  background: #fafbfc;
 }
 
-.results-table .cite {
-  display: block;
-  font-size: 0.72rem;
-  font-weight: 400;
-  color: var(--text-muted);
-}
-
-.results-table .group-row th {
-  padding: 0.4em 0.75em;
-  text-align: left;
-  background: var(--surface-alt);
-  color: var(--text-muted);
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-.results-table .group-row th span {
-  position: sticky;
-  left: 0.75em;
+.results-table tbody th[title] {
+  cursor: help;
 }
 
 .results-table td.shade {
@@ -507,12 +531,7 @@ table.results-table td {
 }
 
 .results-table .ours-row .col-method {
-  color: var(--accent);
-}
-
-.results-table tbody tr:last-child th,
-.results-table tbody tr:last-child td {
-  border-bottom: 0;
+  font-weight: 700;
 }
 
 .results-table .na {
