@@ -8,6 +8,7 @@
   "methodLabels": {
     "Input": "Noisy Input",
     "OurMethod_gamma2.0": "Speckle2Self",
+    "Mask2Restore": "Mask2Restore",
     "bm3d": "BM3D",
     "nlm": "NLM",
     "obnlm": "OBNLM",

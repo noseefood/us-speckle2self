@@ -100,6 +100,7 @@ $(document).ready(function() {
         var methods = [
 			"Input",
 			"OurMethod_gamma2.0",
+			"Mask2Restore",
 			"bm3d",
 			"nlm",
 			"obnlm",
