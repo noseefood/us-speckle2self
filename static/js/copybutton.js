@@ -1,44 +1,50 @@
 document.addEventListener('DOMContentLoaded', function () {
   var copyBtn = document.getElementById('copy-bibtex-btn');
   var bibtexCode = document.getElementById('bibtex-code');
-  if (copyBtn) {
-    // Fix button width to prevent resizing on feedback
-    copyBtn.style.width = copyBtn.offsetWidth + "px";
-  }
-  if (copyBtn && bibtexCode) {
-    copyBtn.addEventListener('click', function () {
-      var text = bibtexCode.innerText || bibtexCode.textContent;
-      navigator.clipboard.writeText(text).then(function () {
-        // Add feedback: change icon to check and button color
-        copyBtn.classList.add('is-success');
-        var icon = copyBtn.querySelector('i');
-        if (icon) {
-          icon.classList.remove('fa-copy');
-          icon.classList.add('fa-check');
-        }
-        // Show feedback message
-        showCopyFeedback(copyBtn, "Copied!");
-        setTimeout(function () {
-          copyBtn.classList.remove('is-success');
-          if (icon) {
-            icon.classList.remove('fa-check');
-            icon.classList.add('fa-copy');
-          }
-        }, 1200);
-      });
-    });
+  if (!copyBtn || !bibtexCode) return;
+
+  // FontAwesome's JS swaps <i> for <svg>, so feedback goes through the label.
+  var label = copyBtn.querySelector('.copy-label');
+  var resetTimer = null;
+
+  function showFeedback(text, cls) {
+    if (label) label.textContent = text;
+    copyBtn.classList.remove('is-success', 'is-danger');
+    copyBtn.classList.add(cls);
+    clearTimeout(resetTimer);
+    resetTimer = setTimeout(function () {
+      if (label) label.textContent = 'Copy';
+      copyBtn.classList.remove(cls);
+    }, 1500);
   }
 
-  function showCopyFeedback(btn, message) {
-    // Remove existing feedback if present
-    var old = btn.parentNode.querySelector('.copy-feedback');
-    if (old) old.remove();
-    var feedback = document.createElement('span');
-    feedback.className = 'copy-feedback';
-    feedback.innerText = message;
-    btn.parentNode.appendChild(feedback);
-    setTimeout(function () {
-      feedback.remove();
-    }, 1200);
+  // navigator.clipboard needs a secure context; fall back to a hidden textarea.
+  function fallbackCopy(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    document.body.removeChild(ta);
+    return ok;
   }
+
+  copyBtn.addEventListener('click', function () {
+    var text = bibtexCode.textContent;
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(function () {
+        showFeedback('Copied!', 'is-success');
+      }, function () {
+        var ok = fallbackCopy(text);
+        showFeedback(ok ? 'Copied!' : 'Failed', ok ? 'is-success' : 'is-danger');
+      });
+    } else {
+      var ok = fallbackCopy(text);
+      showFeedback(ok ? 'Copied!' : 'Failed', ok ? 'is-success' : 'is-danger');
+    }
+  });
 });

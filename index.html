@@ -4,20 +4,20 @@
   <meta charset="utf-8">
   <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
   <!-- Replace the content tag with appropriate information -->
-  <meta name="description" content="DESCRIPTION META TAG">
+  <meta name="description" content="Speckle2Self: a self-supervised algorithm for ultrasound speckle reduction using only single noisy observations. Medical Image Analysis, 2025.">
   <meta property="og:title" content="Speckle2Self: Self-Supervised Ultrasound Speckle Reduction Without Clean Data"/>
-  <meta property="og:description" content="SOCIAL MEDIA DESCRIPTION TAG TAG"/>
+  <meta property="og:description" content="A self-supervised algorithm for ultrasound speckle reduction using only single noisy observations. Medical Image Analysis, 2025."/>
   <meta property="og:url" content="https://noseefood.github.io/us-speckle2self/"/>
   <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
-  <meta property="og:image" content="static/image/your_banner_image.png" />
-  <meta property="og:image:width" content="1200"/>
-  <meta property="og:image:height" content="630"/>
+  <meta property="og:image" content="https://noseefood.github.io/us-speckle2self/static/images/CCA_visual.png" />
+  <meta property="og:image:width" content="3598"/>
+  <meta property="og:image:height" content="1168"/>
 
 
-  <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
-  <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG">
+  <meta name="twitter:title" content="Speckle2Self: Self-Supervised Ultrasound Speckle Reduction Without Clean Data">
+  <meta name="twitter:description" content="A self-supervised algorithm for ultrasound speckle reduction using only single noisy observations. Medical Image Analysis, 2025.">
   <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
-  <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
+  <meta name="twitter:image" content="https://noseefood.github.io/us-speckle2self/static/images/CCA_visual.png">
   <meta name="twitter:card" content="summary_large_image">
   <!-- Keywords for your paper to be indexed by-->
   <meta name="keywords" content="Ultrasound imaging, Medical image analysis, AI for medicine, Medical image denoising, Speckle reduction">
@@ -32,12 +32,10 @@
   <link rel="stylesheet" href="static/css/bulma.min.css">
   <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
   <link rel="stylesheet" href="static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
   <link rel="stylesheet"
   href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="static/css/index.css">
   <link rel="stylesheet" href="https://cdn.knightlab.com/libs/juxtapose/latest/css/juxtapose.css"> 
-  <link rel="stylesheet" href="static/css/copybutton.css">
 
   <script src="https://cdn.knightlab.com/libs/juxtapose/latest/js/juxtapose.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -50,222 +48,198 @@
 </head>
 <body>
 
-
-
-  <section class="hero">
+  <section class="hero publication-hero">
     <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered">
-          <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">Speckle2Self: Self-Supervised Ultrasound Speckle Reduction Without Clean Data</h1>
-            <div class="is-size-5 publication-authors">
-              <!-- Paper authors -->
-              <span class="author-block">
-                <a href="https://www.linkedin.com/in/xuesong-li-robo/" target="_blank">Xuesong Li</a><sup>a,b</sup>,</span>
-                <span class="author-block">
-                  <a href="https://www.professoren.tum.de/navab-nassir" target="_blank">Nassir Navab</a><sup>a,b</sup>,</span>
-                  <span class="author-block">
-                    <a href="https://www.cs.cit.tum.de/camp/members/zhongliang-jiang/" target="_blank">and Zhongliang Jiang</a><sup>a,b</sup><sup>*</sup>
-                  </span>
-                  </div>
+      <div class="container is-max-desktop has-text-centered">
+        <p class="publication-venue">Medical Image Analysis &middot; 2025</p>
+        <h1 class="title is-1 publication-title">Speckle2Self: Self-Supervised Ultrasound Speckle Reduction Without Clean Data</h1>
 
-                  <div class="is-size-5 publication-authors">
-                    <span class="author-block">
-                      <sup>a</sup>Computer Aided Medical Procedures (CAMP), Technical University of Munich, Munich, Germany <br>
-                      <sup>b</sup>Munich Center for Machine Learning (MCML), Munich, Germany <br>
-                      <sup style="font-size: 0.8em;">*</sup><span style="font-size: 0.8em;">Corresponding Author</span>
-                    </span>
-                  </div>
+        <div class="publication-authors">
+          <span class="author-block"><a href="https://www.linkedin.com/in/xuesong-li-robo/" target="_blank">Xuesong Li</a><sup>a,b</sup>,</span>
+          <span class="author-block"><a href="https://www.professoren.tum.de/navab-nassir" target="_blank">Nassir Navab</a><sup>a,b</sup>,</span>
+          <span class="author-block">and <a href="https://www.cs.cit.tum.de/camp/members/zhongliang-jiang/" target="_blank">Zhongliang Jiang</a><sup>a,b,*</sup></span>
+        </div>
 
-                  <div class="column has-text-centered">
-                    <div class="publication-links">
-                         <!-- Arxiv PDF link -->
-                      <!-- <span class="link-block">
-                        <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
-                        class="external-link button is-normal is-rounded is-dark"> -->
-                      <span class="link-block">
-                        <a href="https://www.sciencedirect.com/science/article/pii/S1361841525003020" target="_blank"
-                        class="external-link button is-normal is-rounded is-dark">                        
-                        <span class="icon">
-                          <i class="fas fa-file-pdf"></i>
-                        </span>
-                        <span>Paper</span>
-                      </a>
-                    </span>
+        <div class="publication-affiliations">
+          <span class="affiliation-block"><sup>a</sup>Computer Aided Medical Procedures (CAMP), Technical University of Munich, Munich, Germany</span>
+          <span class="affiliation-block"><sup>b</sup>Munich Center for Machine Learning (MCML), Munich, Germany</span>
+          <span class="affiliation-block corresponding-note"><sup>*</sup>Corresponding Author</span>
+        </div>
 
-                    <!-- Supplementary PDF link -->
-                    <!-- <span class="link-block">
-                      <a href="static/pdfs/supplementary_material.pdf" target="_blank"
-                      class="external-link button is-normal is-rounded is-dark">
-                      <span class="icon">
-                        <i class="fas fa-file-pdf"></i>
-                      </span>
-                      <span>Supplementary</span>
-                    </a>
-                  </span> -->
+        <div class="publication-links">
+          <!-- Arxiv PDF link -->
+          <!-- <span class="link-block">
+            <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
+            class="external-link button is-normal is-rounded is-dark"> -->
+          <span class="link-block">
+            <a href="https://www.sciencedirect.com/science/article/pii/S1361841525003020" target="_blank"
+            class="external-link button is-normal is-rounded is-dark">
+              <span class="icon"><i class="fas fa-file-pdf"></i></span>
+              <span>Paper</span>
+            </a>
+          </span>
 
-                  <!-- Github link -->
-                  <span class="link-block">
-                    <!-- <a href="#Code" target="_blank"
-                    class="external-link button is-normal is-rounded is-dark"> -->
-                    <a href="https://github.com/noseefood/speckle2self" target="_blank"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fab fa-github"></i>
-                    </span>
-                    <span>Code</span>
-                  </a>
-                </span>
+          <!-- Supplementary PDF link -->
+          <!-- <span class="link-block">
+            <a href="static/pdfs/supplementary_material.pdf" target="_blank"
+            class="external-link button is-normal is-rounded is-dark">
+            <span class="icon">
+              <i class="fas fa-file-pdf"></i>
+            </span>
+            <span>Supplementary</span>
+          </a>
+          </span> -->
 
-                <!-- ArXiv abstract Link -->
-                <span class="link-block">
-                  <a href="https://arxiv.org/abs/2507.06828" target="_blank"
-                  class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
-              </span>
+          <!-- Github link -->
+          <span class="link-block">
+            <a href="https://github.com/noseefood/speckle2self" target="_blank"
+            class="external-link button is-normal is-rounded is-dark">
+              <span class="icon"><i class="fab fa-github"></i></span>
+              <span>Code</span>
+            </a>
+          </span>
 
-              <span class="link-block">
-                <a href="#BibTeX"
-                  class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                  <i class="ai ai-obp"></i>
-                  </span>
-                  <span>BibTex</span>
-                </a>
-              </span>
+          <!-- ArXiv abstract Link -->
+          <span class="link-block">
+            <a href="https://arxiv.org/abs/2507.06828" target="_blank"
+            class="external-link button is-normal is-rounded is-dark">
+              <span class="icon"><i class="ai ai-arxiv"></i></span>
+              <span>arXiv</span>
+            </a>
+          </span>
 
-            </div>
-          </div>
+          <span class="link-block">
+            <a href="#BibTeX" class="external-link button is-normal is-rounded is-dark">
+              <span class="icon"><i class="ai ai-obp"></i></span>
+              <span>BibTeX</span>
+            </a>
+          </span>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
 
 <!-- Teaser image-->
-<section class="hero teaser">
+<section class="section teaser">
   <div class="container is-max-desktop">
-    <div class="hero-body">
-      <img src="static/images/CCA_visual.png" alt="Comparison of despeckling results (In vivo dataset)" style="width:85%; display:block; margin:auto;">
-      <h2 class="subtitle has-text-centered">
-        Despeckling results and average homogeneity values on in vivo carotid dataset.
-      </h2>
-      <img src="static/images/Sim_visual.png" alt="Comparison of despeckling results (Synthetic dataset)" style="width:85%; display:block; margin:auto;">
-      <h2 class="subtitle has-text-centered">
-        Despeckling results and average SSIM values on Synthetic dataset.
-      </h2>
-    </div>
+    <figure class="paper-figure">
+      <div class="figure-scroll">
+        <a href="static/images/CCA_visual.png" target="_blank">
+          <img src="static/images/CCA_visual.png" alt="Comparison of despeckling results (In vivo dataset)">
+        </a>
+      </div>
+      <figcaption>Despeckling results and average homogeneity values on in vivo carotid dataset.</figcaption>
+    </figure>
+    <figure class="paper-figure">
+      <div class="figure-scroll">
+        <a href="static/images/Sim_visual.png" target="_blank">
+          <img src="static/images/Sim_visual.png" alt="Comparison of despeckling results (Synthetic dataset)">
+        </a>
+      </div>
+      <figcaption>Despeckling results and average SSIM values on Synthetic dataset.</figcaption>
+    </figure>
+    <p class="scroll-hint is-hidden-tablet">Swipe the figures sideways to see every method.</p>
   </div>
 </section>
 <!-- End teaser image -->
 
 
 <!-- Paper abstract -->
-<section class="section hero is-light">
+<section class="section section-alt" id="abstract">
   <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>
-              Image denoising is a fundamental task in computer vision, particularly in medical ultrasound (US) imaging, where speckle noise significantly degrades image quality. Although recent advancements in deep neural networks have led to substantial improvements in denoising for natural images, these methods cannot be directly applied to US speckle noise, as it is not purely random. Instead, US speckle arises from complex wave interference within the body microstructure, making it tissue-dependent. This dependency means that obtaining two independent noisy observations of the same scene, as required by pioneering Noise2Noise, is not feasible. Additionally, blind-spot networks also cannot handle US speckle noise due to its high spatial dependency. To address this challenge, we introduce Speckle2Self, a novel self-supervised algorithm for speckle reduction using only single noisy observations. The key insight is that applying a multi-scale perturbation (MSP) operation introduces tissue-dependent variations in the speckle pattern across different scales, while preserving the shared anatomical structure. This enables effective speckle suppression by modeling the clean image as a low-rank signal and isolating the sparse noise component. To demonstrate its effectiveness, Speckle2Self is comprehensively compared with conventional filter-based denoising algorithms and SOTA learning-based methods, using both realistic simulated US images and human carotid US images. Additionally, data from multiple US machines are employed to evaluate model generalization and adaptability to images from unseen domains.
-          </p>
-        </div>
-      </div>
+    <h2 class="title is-3 section-title">Abstract</h2>
+    <div class="content abstract-text">
+      <p>
+          Image denoising is a fundamental task in computer vision, particularly in medical ultrasound (US) imaging, where speckle noise significantly degrades image quality. Although recent advancements in deep neural networks have led to substantial improvements in denoising for natural images, these methods cannot be directly applied to US speckle noise, as it is not purely random. Instead, US speckle arises from complex wave interference within the body microstructure, making it tissue-dependent. This dependency means that obtaining two independent noisy observations of the same scene, as required by pioneering Noise2Noise, is not feasible. Additionally, blind-spot networks also cannot handle US speckle noise due to its high spatial dependency. To address this challenge, we introduce Speckle2Self, a novel self-supervised algorithm for speckle reduction using only single noisy observations. The key insight is that applying a multi-scale perturbation (MSP) operation introduces tissue-dependent variations in the speckle pattern across different scales, while preserving the shared anatomical structure. This enables effective speckle suppression by modeling the clean image as a low-rank signal and isolating the sparse noise component. To demonstrate its effectiveness, Speckle2Self is comprehensively compared with conventional filter-based denoising algorithms and SOTA learning-based methods, using both realistic simulated US images and human carotid US images. Additionally, data from multiple US machines are employed to evaluate model generalization and adaptability to images from unseen domains.
+      </p>
     </div>
   </div>
 </section>
 <!-- End paper abstract -->
 
 <!-- Framework section -->
-<section class="section" id="Framework">
-  <div class="container is-max-desktop content">
-    <h2 class="title">Framework</h2>
-    <p>
-      Overview of the proposed despeckling framework. (a) Overall training process. (b) Inference using the trained despeckling model. The
-      network generates despeckled images directly from original US images.
-    </p>
-  </div>
-  <div class="container is-max-desktop has-text-centered">
-    <img src="static/images/network_overview_2.png" alt="Overview diagram" style="width:100%; max-width:1000px;">
-    <h2 class="subtitle has-text-centered">
-      Overview of the proposed despeckling framework.
-    </h2>
+<section class="section" id="framework">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 section-title">Framework</h2>
+    <figure class="paper-figure">
+      <div class="figure-scroll">
+        <a href="static/images/network_overview_2.png" target="_blank">
+          <img src="static/images/network_overview_2.png" alt="Overview diagram">
+        </a>
+      </div>
+      <figcaption>
+        Overview of the proposed despeckling framework. (a) Overall training process. (b) Inference using the trained despeckling model. The
+        network generates despeckled images directly from original US images.
+      </figcaption>
+    </figure>
   </div>
 </section>
 
-<!-- Dynamic Visualization section -->
- <!-- BEGIN: Method Comparison Slider -->
-<section class="section" id="method-comparison">
-  <div class="container is-max-desktop content">
-    <h2 class="title">Compare Methods</h2>
-    <p>
-      Compare different despeckling methods side by side using the slider below. (If the views become unsynchronized after switching methods, please switch to another frame to refresh.)
+<!-- BEGIN: Method Comparison Slider -->
+<section class="section section-alt" id="method-comparison">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 section-title">Compare Methods</h2>
+    <p class="section-lead">
+      Drag the slider to compare the results of different despeckling methods side by side. Use the frame slider to select different B-mode slices.
     </p>
-    <br>
-    <div class="columns is-centered">
-      <div class="column is-half">
+
+    <div class="compare-card">
+      <div class="compare-controls">
         <!-- 示例选择下拉框 -->
-        <div class="has-text-centered" style="margin-bottom:2em;">
-          <div style="display:inline-block;">
-            <div class="select is-small is-rounded" style="min-width:200px;">
-              <!-- <select id="example-dropdown"> -->
-              <select id="example-dropdown" style="font-size:1.2em;">
-                <option>Loading examples...</option>
-              </select>
-            </div>
+        <div class="control-row">
+          <div class="select is-small is-rounded">
+            <select id="example-dropdown" aria-label="Dataset">
+              <option>Loading examples...</option>
+            </select>
           </div>
         </div>
         <!-- 方法对比下拉框 -->
-        <div class="has-text-centered" style="margin-bottom:1em;">
-          <div style="display:inline-flex; align-items:center; gap:0.5em;">
-            <div class="select is-small is-rounded" style="min-width:110px;">
-              <select id="juxtapose-method-left" style="font-size:1.2em;"></select>
-            </div>
-            <span style="font-weight:500; font-size:1em;">vs</span>
-            <div class="select is-small is-rounded" style="min-width:110px;">
-              <select id="juxtapose-method-right" style="font-size:1.2em;"></select>
-            </div>
+        <div class="control-row method-pickers">
+          <div class="select is-small is-rounded">
+            <select id="juxtapose-method-left" aria-label="Left method"></select>
+          </div>
+          <span class="vs-label">vs</span>
+          <div class="select is-small is-rounded">
+            <select id="juxtapose-method-right" aria-label="Right method"></select>
           </div>
         </div>
         <!-- B-plane 滑块选择 -->
-        <div class="has-text-centered" style="margin-bottom:1em;">
-          <label for="frame-slider" style="margin-right:0.5em;">B-Mode Frames:</label>
-           <!-- <label for="frame-slider" style="margin-right:0.5em; font-size:1.5em;">B-Mode Frames:</label> -->
-          <div style="display:inline-flex; align-items:center; gap:0.5em; width:65%;">
-            <input id="frame-slider" class="slider is-small is-rounded" step="1" min="0" max="19" value="0" type="range" style="flex:1;">
-            <span id="frame-slider-value" style="min-width:2em; text-align:center;">0</span>
-          </div>
+        <div class="control-row frame-picker">
+          <label for="frame-slider">B-Mode Frames</label>
+          <input id="frame-slider" class="slider is-small is-rounded" step="1" min="0" max="19" value="0" type="range">
+          <span id="frame-slider-value" class="frame-value">0</span>
         </div>
-
-        <div id="juxtapose-slider-container" style="max-width:400px; margin:0 auto;"></div>
       </div>
+
+      <div id="juxtapose-slider-container"></div>
+
+      <p class="compare-hint">If the views become unsynchronized after switching methods, please switch to another frame to refresh.</p>
     </div>
-    <p class="has-text-centered" style="margin-top:1em;">Drag the slider to compare the results of different despeckling methods side by side. Use the slider to select different B-mode slices.</p>
   </div>
 </section>
 <!-- END: Method Comparison Slider -->
 
- 
 
-<!-- Quantitative results --> 
- <section class="section" id="Framework">
-  <div class="container is-max-desktop content">
-    <h2 class="title">Quantitative Results</h2>
-      <p>
-        Quantitative comparison of different methods for US speckle reduction in terms of PSNR, SSIM, Homogeneity (Hom), and LPIPS. 
-        The best-performing method for each metric, trained without clean images, is highlighted in <strong>bold</strong>. 
-        The supervised method results are marked in a <span style="background-color: #d9d9d9;">gray shade</span>. 
-        Note that for clinical carotid images, the Noise2Noise and supervised Noise2True methods are not applicable.
-      </p>
-  </div>
-  <div class="container is-max-desktop has-text-centered">
-    <img src="static/images/quantitative_results.png" alt="Overview diagram" style="width:100%; max-width:1000px;">
+
+<!-- Quantitative results -->
+<section class="section" id="results">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 section-title">Quantitative Results</h2>
+    <p class="section-lead">
+      Quantitative comparison of different methods for US speckle reduction in terms of PSNR, SSIM, Homogeneity (Hom), and LPIPS.
+      The best-performing method for each metric, trained without clean images, is highlighted in <strong>bold</strong>.
+      The supervised method results are marked in a <span class="gray-shade">gray shade</span>.
+      Note that for clinical carotid images, the Noise2Noise and supervised Noise2True methods are not applicable.
+    </p>
+    <figure class="paper-figure">
+      <div class="figure-scroll figure-scroll-table">
+        <a href="static/images/quantitative_results.png" target="_blank">
+          <img src="static/images/quantitative_results.png" alt="Quantitative comparison table">
+        </a>
+      </div>
+      <figcaption class="figure-note">Click the table to open it at full resolution.</figcaption>
+    </figure>
   </div>
 </section>
 
@@ -307,30 +281,34 @@
   </div>
 </section> -->
 <!--End BibTex citation -->
-<section class="section" id="BibTeX">
-    <div class="container is-max-desktop content">
-      <h2 class="title">BibTeX</h2>
-      <pre><code>
-          <!-- @misc{
-            li2025speckle2selfselfsupervisedultrasoundspeckle,
-            title={Speckle2Self: Self-Supervised Ultrasound Speckle Reduction Without Clean Data}, 
-            author={Xuesong Li and Nassir Navab and Zhongliang Jiang},
-            year={2025},
-            eprint={2507.06828},
-            archivePrefix={arXiv},
-            primaryClass={eess.IV},
-            url={https://arxiv.org/abs/2507.06828},
-          } -->
-          @article{li2025speckle2self,
-            title={Speckle2Self: Self-supervised ultrasound speckle reduction without clean data},
-            author={Li, Xuesong and Navab, Nassir and Jiang, Zhongliang},
-            journal={Medical Image Analysis},
-            pages={103755},
-            year={2025},
-            publisher={Elsevier}
-          }
-        </code></pre>
+<section class="section section-alt" id="BibTeX">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 section-title">BibTeX</h2>
+    <!-- @misc{
+      li2025speckle2selfselfsupervisedultrasoundspeckle,
+      title={Speckle2Self: Self-Supervised Ultrasound Speckle Reduction Without Clean Data},
+      author={Xuesong Li and Nassir Navab and Zhongliang Jiang},
+      year={2025},
+      eprint={2507.06828},
+      archivePrefix={arXiv},
+      primaryClass={eess.IV},
+      url={https://arxiv.org/abs/2507.06828},
+    } -->
+    <div class="bibtex-block">
+      <button class="button is-small is-rounded copy-bibtex" id="copy-bibtex-btn" type="button">
+        <span class="icon is-small"><i class="fas fa-copy"></i></span>
+        <span class="copy-label">Copy</span>
+      </button>
+<pre><code id="bibtex-code">@article{li2025speckle2self,
+  title={Speckle2Self: Self-supervised ultrasound speckle reduction without clean data},
+  author={Li, Xuesong and Navab, Nassir and Jiang, Zhongliang},
+  journal={Medical Image Analysis},
+  pages={103755},
+  year={2025},
+  publisher={Elsevier}
+}</code></pre>
     </div>
+  </div>
 </section>
 
 
@@ -338,7 +316,7 @@
   <div class="container">
     <div class="columns is-centered">
       <div class="column is-8">
-        <div class="content">
+        <div class="content has-text-centered">
 
           <p>
             This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page, and also draws inspiration from the <a href="https://3d-ultrasound-diffusion.github.io/" target="_blank">3D Ultrasound Diffusion</a> project page.
