@@ -21,13 +21,24 @@
   --mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
 }
 
+/* Arial scaled to Inter's metrics (same values next/font uses), so text keeps
+   its line breaks while the web font loads and nothing jumps when it swaps in. */
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial'), local('Helvetica Neue'), local('Helvetica');
+  ascent-override: 90.44%;
+  descent-override: 22.52%;
+  line-gap-override: 0%;
+  size-adjust: 107.12%;
+}
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--nav-h) + 12px); /* anchors land below the sticky nav */
 }
 
 body {
-  font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Inter', 'Inter Fallback', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
   color: var(--text-body);
   background: #fff;
   line-height: 1.6;
@@ -382,7 +393,7 @@ input:focus-visible,
 .scroll-hint {
   margin-top: 1rem;
   text-align: center;
-  color: #94a3b8;
+  color: var(--text-muted);
   font-size: 0.82rem;
 }
 
@@ -638,12 +649,18 @@ input:focus-visible,
 /* ---------- Results table ---------- */
 /* Booktabs look, like the paper's table: horizontal rules only. */
 
+/* Scroll shadows: a soft edge appears only while columns are hidden on that side. */
 .results-table-wrap {
+  background:
+    linear-gradient(to right, #fff 40%, rgb(255 255 255 / 0)) left center / 2.5rem 100% no-repeat local,
+    linear-gradient(to left, #fff 40%, rgb(255 255 255 / 0)) right center / 2.5rem 100% no-repeat local,
+    radial-gradient(farthest-side at 0 50%, rgb(15 23 42 / 0.28), transparent) left center / 1.1rem 100% no-repeat scroll,
+    radial-gradient(farthest-side at 100% 50%, rgb(15 23 42 / 0.28), transparent) right center / 1.1rem 100% no-repeat scroll,
+    #fff;
   overflow-x: auto;
   padding: 0.9rem 1.1rem;
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  background: #fff;
   box-shadow: var(--shadow-md);
 }
 
@@ -789,6 +806,11 @@ table.results-table td {
   margin: 0;
 }
 
+.table-note a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .table-note {
   margin-top: 0.75rem;
   text-align: center;
@@ -875,6 +897,16 @@ table.results-table td {
 
 
 /* ---------- Tablet / phone ---------- */
+
+/* Tablets: the full table fits once it is a little denser. */
+@media screen and (min-width: 769px) and (max-width: 1023px) {
+  .results-table { min-width: 0; font-size: 0.7rem; }
+  table.results-table th,
+  table.results-table td { padding: 0.4em 0.18em; }
+  .results-table .group-start { padding-left: 0.45em; }
+  .results-table .col-method { padding-right: 0.4em; }
+  .results-table-wrap { padding: 0.8rem 0.3rem; }
+}
 
 @media screen and (max-width: 860px) {
   .compare-card {
