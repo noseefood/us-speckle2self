@@ -95,6 +95,39 @@ input:focus-visible,
   white-space: nowrap;
 }
 
+/* Sibling project next to the brand: listed but not yet linked. */
+.site-nav-projects {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  min-width: 0;
+}
+
+.site-nav-sibling {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding-left: 0.9rem;
+  border-left: 1px solid var(--border);
+  color: #94a3b8;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  cursor: default;
+  user-select: none;
+}
+
+.soon-tag {
+  padding: 0.1em 0.5em;
+  border: 1px dashed #cbd5e1;
+  border-radius: 999px;
+  color: #94a3b8;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
 .site-nav-links {
   display: flex;
   gap: 0.25rem;
@@ -289,8 +322,7 @@ input:focus-visible,
   margin: 0 auto;
   font-size: 1.06rem;
   line-height: 1.8;
-  text-align: justify;
-  hyphens: auto;
+  text-wrap: pretty;
 }
 
 .gray-shade {
@@ -524,14 +556,6 @@ input:focus-visible,
 .frame-range:active::-webkit-slider-thumb { transform: scale(1.15); }
 .frame-range:active::-moz-range-thumb { transform: scale(1.15); }
 
-.compare-hint {
-  margin: 0;
-  padding-top: 0.9rem;
-  border-top: 1px solid var(--border);
-  color: #94a3b8;
-  font-size: 0.8rem;
-  line-height: 1.55;
-}
 
 /* Divider handle: a thin white line with a round grip. */
 #juxtapose-slider div.jx-control {
@@ -863,8 +887,7 @@ table.results-table td {
     padding: 0;
   }
   .compare-panel .compare-field:first-child,
-  .compare-panel .compare-field:nth-child(4),
-  .compare-hint {
+  .compare-panel .compare-field:nth-child(4) {
     grid-column: 1 / -1;
   }
 }
@@ -884,7 +907,7 @@ table.results-table td {
   html { font-size: 14px; }
   :root { --nav-h: 46px; }
   .site-nav-inner { padding: 0 0.9rem; gap: 0.75rem; }
-  .site-nav-brand { display: none; }
+  .site-nav-projects { display: none; }
   .site-nav-links { margin: 0 auto; }
   .site-nav-links a { padding: 0.3rem 0.55rem; }
   .section { padding: 2.75rem 0.9rem; }
@@ -893,7 +916,7 @@ table.results-table td {
   .publication-affiliations { font-size: 0.85rem; line-height: 1.55; }
   .section-title { font-size: 1.6rem !important; }
   .section-lead { text-align: left; font-size: 0.98rem; margin-bottom: 2rem; }
-  .abstract-text { font-size: 0.98rem; line-height: 1.7; text-align: left; }
+  .abstract-text { font-size: 0.98rem; line-height: 1.7; }
   .paper-figure { margin-bottom: 2.25rem; }
   .figure-scroll { padding: 0.6rem; }
   .figure-scroll img { min-width: 720px; }

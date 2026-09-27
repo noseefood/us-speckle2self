@@ -122,21 +122,39 @@ $(document).ready(function() {
 			return "static/images/comparisons/" + example + "/" + method + "_" + frame + ".gif";
         }
 
-        function preloadImages(srcs, callback) {
-            var loaded = 0;
-            var total = srcs.length;
-            var done = false;
-            srcs.forEach(function(src) {
-                var img = new window.Image();
-                img.onload = img.onerror = function() {
-                    loaded++;
-                    if (!done && loaded === total) {
-                        done = true;
-                        callback();
-                    }
-                };
-                img.src = src;
+        // Browsers keep one animation clock per image URL (Safari most visibly):
+        // after switching one method, the new GIF starts at frame 0 while the
+        // unchanged side, still the same cached URL, keeps its old phase. Each
+        // rebuild therefore shows both GIFs through brand-new blob: URLs, so both
+        // animations restart together. The bytes are fetched once and reused.
+        var gifBlobs = {};     // src -> Promise<Blob>
+        var liveUrls = [];     // blob: URLs shown by the current slider
+
+        function loadBlob(src) {
+            if (!gifBlobs[src]) {
+                gifBlobs[src] = fetch(src).then(function(r) {
+                    if (!r.ok) throw new Error(r.status);
+                    return r.blob();
+                });
+                gifBlobs[src].catch(function() { delete gifBlobs[src]; });
+            }
+            return gifBlobs[src];
+        }
+
+        function freshUrls(srcs, callback) {
+            if (!window.fetch || !window.URL || !URL.createObjectURL) {
+                callback(srcs, false);
+                return;
+            }
+            Promise.all(srcs.map(loadBlob)).then(function(blobs) {
+                callback(blobs.map(function(b) { return URL.createObjectURL(b); }), true);
+            }, function() {
+                callback(srcs, false);   // e.g. opened from file://: plain URLs still work
             });
+        }
+
+        function revoke(urls) {
+            urls.forEach(function(u) { if (u.indexOf('blob:') === 0) URL.revokeObjectURL(u); });
         }
 
         function updateJuxtaposeSlider(example, left, right, frame) {
@@ -156,25 +174,30 @@ $(document).ready(function() {
                 }
             }
             var request = ++sliderRequest;
-            preloadImages([leftSrc, rightSrc], function() {
+            freshUrls([leftSrc, rightSrc], function(urls) {
                 // Dragging the frame slider fires many rebuilds; a slower,
                 // older preload must not replace the newer frame.
-                if (request !== sliderRequest) return;
+                if (request !== sliderRequest) {
+                    revoke(urls);
+                    return;
+                }
                 stopAutoSlide();
                 currentSlider = null;
                 $('#juxtapose-slider').remove();
+                revoke(liveUrls);
+                liveUrls = urls;
                 var sliderDiv = $('<div></div>').attr('id', 'juxtapose-slider').css('width', '100%');
                 $('#juxtapose-slider-container').append(sliderDiv);
                 setTimeout(function() {
                     if (request !== sliderRequest) return;
                     var slider = new juxtapose.JXSlider('#juxtapose-slider', [
                         {
-                            src: leftSrc,
+                            src: urls[0],
                             label: methodLabels[left] || left,
                             credit: ''
                         },
                         {
-                            src: rightSrc,
+                            src: urls[1],
                             label: methodLabels[right] || right,
                             credit: ''
                         }

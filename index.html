@@ -34,25 +34,28 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <!-- ?v= busts browser/CDN caches (GitHub Pages caches 10 min): bump it whenever css/js change -->
-  <link rel="stylesheet" href="static/css/bulma.min.css?v=20260927">
+  <link rel="stylesheet" href="static/css/bulma.min.css?v=20260927b">
   <link rel="stylesheet"
   href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="https://cdn.knightlab.com/libs/juxtapose/1.2.5/css/juxtapose.css">
-  <link rel="stylesheet" href="static/css/index.css?v=20260927">
+  <link rel="stylesheet" href="static/css/index.css?v=20260927b">
 
   <!-- defer keeps this order and runs after parsing, so nothing blocks the first paint -->
   <script defer src="https://cdn.knightlab.com/libs/juxtapose/1.2.5/js/juxtapose.min.js"></script>
   <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="static/js/index.js?v=20260927"></script>
-  <script defer src="static/js/copybutton.js?v=20260927"></script>
-  <script defer src="static/js/nav.js?v=20260927"></script>
+  <script defer src="static/js/index.js?v=20260927b"></script>
+  <script defer src="static/js/copybutton.js?v=20260927b"></script>
+  <script defer src="static/js/nav.js?v=20260927b"></script>
 </head>
 <body id="top">
 
 <!-- ============ Navigation ============ -->
 <nav class="site-nav" aria-label="Sections">
   <div class="site-nav-inner">
-    <a class="site-nav-brand" href="#top">Speckle2Self</a>
+    <div class="site-nav-projects">
+      <a class="site-nav-brand" href="#top">Speckle2Self</a>
+      <span class="site-nav-sibling is-soon" aria-disabled="true" title="Coming soon">Mask2Restore <span class="soon-tag">Coming Soon</span></span>
+    </div>
     <div class="site-nav-links">
       <a href="#abstract">Overview</a>
       <a href="#framework">Method</a>
@@ -236,7 +239,6 @@
           <input id="frame-slider" class="frame-range" step="1" min="0" max="19" value="0" type="range">
         </div>
 
-        <p class="compare-hint">If the views become unsynchronized after switching methods, please switch to another frame to refresh.</p>
       </div>
     </div>
   </div>
