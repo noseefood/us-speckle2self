@@ -5,19 +5,20 @@
   <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
   <!-- Replace the content tag with appropriate information -->
   <meta name="description" content="Speckle2Self: a self-supervised algorithm for ultrasound speckle reduction using only single noisy observations. Medical Image Analysis, 2025.">
+  <meta property="og:type" content="website">
   <meta property="og:title" content="Speckle2Self: Self-Supervised Ultrasound Speckle Reduction Without Clean Data"/>
   <meta property="og:description" content="A self-supervised algorithm for ultrasound speckle reduction using only single noisy observations. Medical Image Analysis, 2025."/>
   <meta property="og:url" content="https://noseefood.github.io/us-speckle2self/"/>
   <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
-  <meta property="og:image" content="https://noseefood.github.io/us-speckle2self/static/images/CCA_visual.png" />
-  <meta property="og:image:width" content="3598"/>
-  <meta property="og:image:height" content="1168"/>
+  <meta property="og:image" content="https://noseefood.github.io/us-speckle2self/static/images/CCA_visual_web.jpg" />
+  <meta property="og:image:width" content="2000"/>
+  <meta property="og:image:height" content="649"/>
 
 
   <meta name="twitter:title" content="Speckle2Self: Self-Supervised Ultrasound Speckle Reduction Without Clean Data">
   <meta name="twitter:description" content="A self-supervised algorithm for ultrasound speckle reduction using only single noisy observations. Medical Image Analysis, 2025.">
   <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
-  <meta name="twitter:image" content="https://noseefood.github.io/us-speckle2self/static/images/CCA_visual.png">
+  <meta name="twitter:image" content="https://noseefood.github.io/us-speckle2self/static/images/CCA_visual_web.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <!-- Keywords for your paper to be indexed by-->
   <meta name="keywords" content="Ultrasound imaging, Medical image analysis, AI for medicine, Medical image denoising, Speckle reduction">
@@ -34,15 +35,15 @@
 
   <!-- ?v= busts browser/CDN caches (GitHub Pages caches 10 min): bump it whenever css/js change -->
   <link rel="stylesheet" href="static/css/bulma.min.css?v=20260927">
-  <link rel="stylesheet" href="static/css/bulma-slider.min.css?v=20260927">
   <link rel="stylesheet"
   href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="https://cdn.knightlab.com/libs/juxtapose/latest/css/juxtapose.css">
+  <link rel="stylesheet" href="https://cdn.knightlab.com/libs/juxtapose/1.2.5/css/juxtapose.css">
   <link rel="stylesheet" href="static/css/index.css?v=20260927">
 
-  <script src="https://cdn.knightlab.com/libs/juxtapose/latest/js/juxtapose.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="static/js/index.js?v=20260927"></script>
+  <!-- defer keeps this order and runs after parsing, so nothing blocks the first paint -->
+  <script defer src="https://cdn.knightlab.com/libs/juxtapose/1.2.5/js/juxtapose.min.js"></script>
+  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="static/js/index.js?v=20260927"></script>
   <script defer src="static/js/copybutton.js?v=20260927"></script>
   <script defer src="static/js/nav.js?v=20260927"></script>
 </head>
@@ -140,7 +141,7 @@
     <figure class="paper-figure">
       <div class="figure-scroll">
         <a href="static/images/CCA_visual.png" target="_blank" rel="noopener">
-          <img src="static/images/CCA_visual.png" alt="Comparison of despeckling results (In vivo dataset)">
+          <img src="static/images/CCA_visual_web.jpg" width="2000" height="649" decoding="async" fetchpriority="high" alt="Comparison of despeckling results (In vivo dataset)">
         </a>
       </div>
       <figcaption>Despeckling results and average homogeneity values on in vivo carotid dataset.</figcaption>
@@ -148,7 +149,7 @@
     <figure class="paper-figure">
       <div class="figure-scroll">
         <a href="static/images/Sim_visual.png" target="_blank" rel="noopener">
-          <img src="static/images/Sim_visual.png" alt="Comparison of despeckling results (Synthetic dataset)">
+          <img src="static/images/Sim_visual_web.jpg" width="2000" height="644" loading="lazy" decoding="async" alt="Comparison of despeckling results (Synthetic dataset)">
         </a>
       </div>
       <figcaption>Despeckling results and average SSIM values on Synthetic dataset.</figcaption>
@@ -181,7 +182,7 @@
     <figure class="paper-figure">
       <div class="figure-scroll">
         <a href="static/images/network_overview_2.png" target="_blank" rel="noopener">
-          <img src="static/images/network_overview_2.png" alt="Overview diagram">
+          <img src="static/images/network_overview_2.png" width="2352" height="821" loading="lazy" decoding="async" alt="Overview diagram">
         </a>
       </div>
       <figcaption>
@@ -202,36 +203,41 @@
     </p>
 
     <div class="compare-card">
-      <div class="compare-controls">
+      <div class="compare-stage">
+        <div id="juxtapose-slider-container"></div>
+      </div>
+
+      <div class="compare-panel">
         <!-- 示例选择下拉框 -->
-        <div class="control-row">
-          <div class="select is-small is-rounded">
-            <select id="example-dropdown" aria-label="Dataset">
+        <div class="compare-field">
+          <label class="compare-label" for="example-dropdown">Dataset</label>
+          <div class="select is-small is-fullwidth">
+            <select id="example-dropdown">
               <option>Loading examples...</option>
             </select>
           </div>
         </div>
         <!-- 方法对比下拉框 -->
-        <div class="control-row method-pickers">
-          <div class="select is-small is-rounded">
-            <select id="juxtapose-method-left" aria-label="Left method"></select>
+        <div class="compare-field">
+          <label class="compare-label" for="juxtapose-method-left"><span class="side-tag">L</span>Left method</label>
+          <div class="select is-small is-fullwidth">
+            <select id="juxtapose-method-left"></select>
           </div>
-          <span class="vs-label">vs</span>
-          <div class="select is-small is-rounded">
-            <select id="juxtapose-method-right" aria-label="Right method"></select>
+        </div>
+        <div class="compare-field">
+          <label class="compare-label" for="juxtapose-method-right"><span class="side-tag">R</span>Right method</label>
+          <div class="select is-small is-fullwidth">
+            <select id="juxtapose-method-right"></select>
           </div>
         </div>
         <!-- B-plane 滑块选择 -->
-        <div class="control-row frame-picker">
-          <label for="frame-slider">B-Mode Frames</label>
-          <input id="frame-slider" class="slider is-small is-rounded" step="1" min="0" max="19" value="0" type="range">
-          <span id="frame-slider-value" class="frame-value">0</span>
+        <div class="compare-field">
+          <label class="compare-label frame-label" for="frame-slider">B-Mode Frames <span id="frame-slider-value" class="frame-value">0</span></label>
+          <input id="frame-slider" class="frame-range" step="1" min="0" max="19" value="0" type="range">
         </div>
+
+        <p class="compare-hint">If the views become unsynchronized after switching methods, please switch to another frame to refresh.</p>
       </div>
-
-      <div id="juxtapose-slider-container"></div>
-
-      <p class="compare-hint">If the views become unsynchronized after switching methods, please switch to another frame to refresh.</p>
     </div>
   </div>
 </section>

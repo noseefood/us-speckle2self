@@ -43,7 +43,6 @@ a:hover { color: var(--accent-hover); }
 /* Keyboard focus: a visible ring, never shown for mouse clicks */
 a:focus-visible,
 button:focus-visible,
-select:focus-visible,
 input:focus-visible,
 .button:focus-visible {
   outline: 2px solid var(--accent);
@@ -273,7 +272,7 @@ input:focus-visible,
 
 .section-lead {
   max-width: 740px;
-  margin: 0 auto 2.5rem;
+  margin: 0 auto 3rem;
   color: var(--text-muted);
   text-align: center;
   font-size: 1.06rem;
@@ -334,6 +333,7 @@ input:focus-visible,
 .figure-scroll img {
   display: block;
   width: 100%;
+  height: auto;
   margin: 0 auto;
 }
 
@@ -356,124 +356,258 @@ input:focus-visible,
 
 
 /* ---------- Method comparison ---------- */
+/* One card, like the figures above: the slider on the left, its controls on the right. */
 
 .compare-card {
-  max-width: 620px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 272px;
+  gap: 1.75rem;
+  align-items: center;
+  max-width: 860px;
   margin: 0 auto;
-  padding: 1.5rem;
+  padding: 1.25rem;
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   background: #fff;
   box-shadow: var(--shadow-md);
+  transition: box-shadow 0.3s;
 }
 
-.compare-controls {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.85rem;
-  margin-bottom: 1.25rem;
+.compare-card:hover {
+  box-shadow: var(--shadow-lg);
 }
 
-.control-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
-  width: 100%;
-}
-
-.compare-controls .select select {
-  font-size: 0.95rem;
-}
-
-.vs-label {
-  color: var(--text-muted);
-  font-weight: 600;
-  font-size: 0.9rem;
-}
-
-.frame-picker label {
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  white-space: nowrap;
-}
-
-.method-pickers,
-.frame-picker {
-  flex-wrap: nowrap;
-}
-
-.method-pickers .select {
-  flex: 0 1 190px;
-  min-width: 0;
-}
-
-.method-pickers .select select {
-  width: 100%;
-}
-
-.frame-picker input[type="range"] {
-  flex: 1 1 180px;
-  min-width: 0;
-  max-width: 320px;
-  margin: 0;
-}
-
-.frame-value {
-  min-width: 2.4em;
-  padding: 0.1em 0.5em;
-  border-radius: 999px;
-  background: var(--accent-soft);
-  color: var(--accent);
-  font-weight: 600;
-  font-size: 0.9rem;
-  text-align: center;
+/* Square from the start, so the card does not jump while the GIFs load. */
+.compare-stage {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: #0b0f17;
 }
 
 #juxtapose-slider-container {
-  max-width: 480px;
-  margin: 0 auto;
+  width: 100%;
 }
 
-#juxtapose-slider {
-  border-radius: 6px;
-  overflow: hidden;
+/* JXSlider fixes its size in px when built and never shrinks again; the
+   comparison images are all square, so let CSS own the size instead. */
+#juxtapose-slider-container #juxtapose-slider {
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 1 / 1;
+  font-family: inherit;
 }
+
+.compare-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  padding: 0.25rem 0.25rem 0.25rem 0;
+}
+
+.compare-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.compare-label {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.side-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-line);
+  color: var(--accent);
+  font-size: 0.66rem;
+  letter-spacing: 0;
+}
+
+.compare-panel .select select {
+  border-color: var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 0.9rem;
+  box-shadow: none;
+}
+
+.compare-panel .select select:hover {
+  border-color: #cbd5e1;
+}
+
+.compare-panel .select select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.compare-panel .select:not(.is-multiple):not(.is-loading)::after {
+  border-color: var(--text-muted);
+}
+
+.frame-label {
+  justify-content: space-between;
+}
+
+.frame-value {
+  min-width: 2.2em;
+  padding: 0.05em 0.55em;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Frame slider: thin track, round thumb in the accent colour. */
+.frame-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 1.25rem;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.frame-range::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 999px;
+  background: #e2e8f0;
+}
+
+.frame-range::-moz-range-track {
+  height: 4px;
+  border-radius: 999px;
+  background: #e2e8f0;
+}
+
+.frame-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  margin-top: -6px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent-line), 0 1px 3px rgb(15 23 42 / 0.25);
+  transition: transform 0.15s;
+}
+
+.frame-range::-moz-range-thumb {
+  box-sizing: border-box;
+  width: 16px;
+  height: 16px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent-line), 0 1px 3px rgb(15 23 42 / 0.25);
+  transition: transform 0.15s;
+}
+
+.frame-range:active::-webkit-slider-thumb { transform: scale(1.15); }
+.frame-range:active::-moz-range-thumb { transform: scale(1.15); }
 
 .compare-hint {
-  margin-top: 1rem;
-  text-align: center;
+  margin: 0;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--border);
   color: #94a3b8;
-  font-size: 0.82rem;
+  font-size: 0.8rem;
+  line-height: 1.55;
 }
 
-/* Method Comparison slider: the two method names normally live inside the
-   clipped left/right panels, so the sweeping divider crops and covers them.
-   index.js re-parents them onto .jx-slider; these rules pin each one to its
-   own outer edge, above the handle (z-index 15). */
+/* Divider handle: a thin white line with a round grip. */
+#juxtapose-slider div.jx-control {
+  width: 2px;
+  box-shadow: 0 0 6px rgb(0 0 0 / 0.35);
+}
+
+#juxtapose-slider div.jx-controller {
+  width: 32px;
+  height: 32px;
+  margin-left: -15px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.35);
+}
+
+#juxtapose-slider div.jx-arrow {
+  z-index: 1;
+  border-width: 5px 5px 5px 0;
+}
+
+#juxtapose-slider div.jx-arrow.jx-left {
+  left: 9px;
+  border-color: transparent var(--accent) transparent transparent;
+}
+
+#juxtapose-slider div.jx-arrow.jx-right {
+  right: 9px;
+  border-width: 5px 0 5px 5px;
+  border-color: transparent transparent transparent var(--accent);
+}
+
+#juxtapose-slider div.jx-handle:hover div.jx-arrow.jx-left,
+#juxtapose-slider div.jx-handle:active div.jx-arrow.jx-left { left: 7px; }
+#juxtapose-slider div.jx-handle:hover div.jx-arrow.jx-right,
+#juxtapose-slider div.jx-handle:active div.jx-arrow.jx-right { right: 7px; }
+
+#juxtapose-slider div.jx-controller:focus {
+  background: #fff;
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* The library's corner badge sits on the image and clashes with the palette. */
+#juxtapose-slider a.jx-knightlab {
+  display: none;
+}
+
+/* Method names: JXSlider normally puts them inside the clipped left/right
+   panels, so the sweeping divider crops and covers them. index.js re-parents
+   them onto .jx-slider; these rules pin each one to its own outer edge,
+   above the handle (z-index 15). */
 #juxtapose-slider div.jx-label.jx-label-pinned {
   position: absolute;
-  top: 8px;
+  top: 10px;
   float: none;
   z-index: 20;
   pointer-events: none;
-  padding: 0.2em 0.65em;
+  padding: 0.25em 0.7em;
   border-radius: 999px;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgb(15 23 42 / 0.62);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
   color: #fff;
   font-family: inherit;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
+  font-weight: 600;
   line-height: 1.5;
 }
 
 #juxtapose-slider div.jx-label.jx-label-pinned-left {
-  left: 8px;
+  left: 10px;
 }
 
 #juxtapose-slider div.jx-label.jx-label-pinned-right {
-  right: 8px;
+  right: 10px;
 }
 
 
@@ -504,7 +638,7 @@ input:focus-visible,
 /* 'table.' outranks Bulma's `table td:not([align]) { text-align: inherit }`. */
 table.results-table th,
 table.results-table td {
-  padding: 0.42em 0.5em;
+  padding: 0.42em 0.4em;
   border: 0;
   text-align: center;
   vertical-align: middle;
@@ -547,7 +681,7 @@ table.results-table td {
 
 /* Breathing room between dataset groups instead of vertical lines. */
 .results-table .group-start {
-  padding-left: 1.1em;
+  padding-left: 0.95em;
 }
 
 .results-table .group-row th {
@@ -716,6 +850,30 @@ table.results-table td {
 }
 
 
+/* ---------- Tablet / phone ---------- */
+
+@media screen and (max-width: 860px) {
+  .compare-card {
+    grid-template-columns: 1fr;
+    max-width: 520px;
+  }
+  .compare-panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0;
+  }
+  .compare-panel .compare-field:first-child,
+  .compare-panel .compare-field:nth-child(4),
+  .compare-hint {
+    grid-column: 1 / -1;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .compare-panel { grid-template-columns: 1fr; }
+}
+
+
 /* ---------- Phone ---------- */
 /* Wide multi-panel figures stay legible on phones: keep a readable
    minimum width and let the frame scroll sideways instead of shrinking. */
@@ -740,11 +898,7 @@ table.results-table td {
   .figure-scroll { padding: 0.6rem; }
   .figure-scroll img { min-width: 720px; }
   .paper-figure figcaption { font-size: 0.88rem; text-align: left; }
-  .compare-card { padding: 1rem 0.75rem; }
-  .compare-controls .select select { font-size: 0.85rem; }
-  .method-pickers { gap: 0.4rem; }
-  .method-pickers .select { flex: 1 1 0; }
-  .method-pickers .select select { padding-left: 0.7em; padding-right: 1.9em; }
+  .compare-card { padding: 0.75rem; gap: 1.1rem; }
   /* Only phones scroll the table, so only they need an edge on the
      sticky method column; desktop keeps the rules-only look. */
   .results-table .col-method { box-shadow: 1px 0 0 var(--border); }
