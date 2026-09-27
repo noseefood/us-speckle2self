@@ -1,47 +1,163 @@
+/* Project page styles. Layout and type follow the SonoGraph-WM page; the palette stays blue / white / gray. */
 :root {
-  --text: #1f2933;
-  --text-muted: #5f6b7a;
+  --text: #1e293b;
+  --text-body: #334155;
+  --text-muted: #64748b;
   --accent: #1d5fd1;
+  --accent-hover: #174caa;
   --accent-soft: #e8f0fd;
-  --surface-alt: #f6f7f9;
-  --border: #e3e6eb;
+  --accent-line: #d3e1f8;
+  --accent-2: #0e7490;
+  --surface-alt: #f8fafc;
+  --border: #e5e8ef;
   --shade: #eceef1;
-  --radius: 10px;
-  --shadow: 0 1px 2px rgba(16, 24, 40, 0.06), 0 4px 16px rgba(16, 24, 40, 0.06);
+  --radius: 12px;
+  --radius-lg: 16px;
+  --shadow-sm: 0 1px 2px rgb(15 23 42 / 0.04);
+  --shadow-md: 0 1px 2px rgb(15 23 42 / 0.04), 0 6px 18px -6px rgb(15 23 42 / 0.10);
+  --shadow-lg: 0 2px 4px rgb(15 23 42 / 0.05), 0 14px 30px -10px rgb(15 23 42 / 0.16);
+  --shadow: var(--shadow-md);
+  --nav-h: 52px;
+  --mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-h) + 12px); /* anchors land below the sticky nav */
 }
 
 body {
-  font-family: 'Noto Sans', sans-serif;
-  color: var(--text);
+  font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--text-body);
+  background: #fff;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection { background: var(--accent-line); }
+
+a { color: var(--accent); }
+a:hover { color: var(--accent-hover); }
+
+/* Keyboard focus: a visible ring, never shown for mouse clicks */
+a:focus-visible,
+button:focus-visible,
+select:focus-visible,
+input:focus-visible,
+.button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  box-shadow: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+/* Inline SVG icons */
+.icon svg { display: block; width: 1.05em; height: 1.05em; }
+.button.is-small .icon svg { width: 0.95em; height: 0.95em; }
+
+
+/* ---------- Sticky navigation ---------- */
+
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: rgb(255 255 255 / 0.82);
+  -webkit-backdrop-filter: saturate(160%) blur(10px);
+  backdrop-filter: saturate(160%) blur(10px);
+  border-bottom: 1px solid rgb(226 232 240 / 0.8);
+  transition: box-shadow 0.25s, background 0.25s;
+}
+
+.site-nav.is-scrolled {
+  background: rgb(255 255 255 / 0.9);
+  box-shadow: 0 6px 20px -12px rgb(15 23 42 / 0.25);
+}
+
+.site-nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  max-width: 1152px;
+  height: var(--nav-h);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.site-nav-brand {
+  color: var(--text) !important;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.site-nav-links {
+  display: flex;
+  gap: 0.25rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.site-nav-links::-webkit-scrollbar { display: none; }
+
+.site-nav-links a {
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: color 0.2s, background 0.2s;
+}
+
+.site-nav-links a:hover,
+.site-nav-links a.is-active {
+  color: var(--accent);
+  background: var(--accent-soft);
 }
 
 
 /* ---------- Hero ---------- */
 
+.publication-hero {
+  /* two faint blue washes, fading into the page */
+  background:
+    radial-gradient(60% 70% at 18% 0%, rgb(29 95 209 / 0.07), transparent 70%),
+    radial-gradient(50% 60% at 85% 10%, rgb(14 116 144 / 0.05), transparent 70%);
+}
+
 .publication-hero .hero-body {
-  padding-top: 4.5rem;
-  padding-bottom: 2.5rem;
+  padding: 4rem 1.5rem 2.2rem;
 }
 
 .publication-venue {
   display: inline-block;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.4rem;
   padding: 0.3em 0.95em;
+  border: 1px solid var(--accent-line);
   border-radius: 999px;
-  background: var(--accent-soft);
+  background: rgb(255 255 255 / 0.7);
   color: var(--accent);
-  font-family: 'Google Sans', 'Noto Sans', sans-serif;
-  font-size: 0.95rem;
+  font-size: 0.78rem;
   font-weight: 600;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .publication-title {
-  font-family: 'Google Sans', 'Noto Sans', sans-serif;
-  font-size: clamp(1.85rem, 4.6vw, 3rem) !important;
-  line-height: 1.18 !important;
-  letter-spacing: -0.01em;
-  color: var(--text);
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 800 !important;
+  font-size: clamp(1.8rem, 4vw, 2.75rem) !important;
+  line-height: 1.16 !important;
+  letter-spacing: -0.02em;
+  color: var(--text) !important;
+  text-wrap: balance;
 }
 
 .title.publication-title:not(:last-child) {
@@ -49,36 +165,47 @@ body {
 }
 
 .publication-authors {
-  font-family: 'Google Sans', 'Noto Sans', sans-serif;
-  font-size: 1.25rem;
-  margin-bottom: 0.6rem;
+  font-size: 1.12rem;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 0.55rem;
 }
 
 .publication-authors a {
   color: var(--accent) !important;
+  font-weight: 600;
 }
 
 .publication-authors a:hover {
+  color: var(--accent-hover) !important;
   text-decoration: underline;
-}
-
-.publication-affiliations {
-  font-family: 'Google Sans', 'Noto Sans', sans-serif;
-  color: var(--text-muted);
-  font-size: 1rem;
-  line-height: 1.6;
-}
-
-.author-block,
-.affiliation-block {
-  display: inline-block;
+  text-underline-offset: 3px;
 }
 
 .author-block {
-  margin: 0;
+  display: inline-block;
+  margin: 0 0.15em;
+}
+
+.publication-authors sup,
+.publication-affiliations sup {
+  margin-left: 1px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.publication-affiliations sup {
+  margin-right: 2px;
+}
+
+.publication-affiliations {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.7;
 }
 
 .affiliation-block {
+  display: inline-block;
   margin: 0 0.6em;
 }
 
@@ -88,72 +215,97 @@ body {
 }
 
 .publication-links {
-  margin-top: 1.75rem;
+  margin-top: 1.7rem;
 }
 
-.link-block a {
-  margin: 5px 3px;
+.link-block .button {
+  margin: 5px 4px;
+}
+
+.button.is-dark {
+  background: var(--text);
+  border: 1px solid var(--text);
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.button.is-dark:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-1px);
 }
 
 
 /* ---------- Sections ---------- */
 
 .section {
-  padding: 4rem 1.5rem;
+  padding: 4.5rem 1.5rem;
+}
+
+.section.teaser {
+  padding-top: 0.5rem;
 }
 
 .section-alt {
   background: var(--surface-alt);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.section-eyebrow {
+  margin-bottom: 0.45rem;
+  text-align: center;
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .section-title {
   text-align: center;
-  font-family: 'Google Sans', 'Noto Sans', sans-serif;
-  margin-bottom: 2rem !important;
-}
-
-.section-title::after {
-  content: "";
-  display: block;
-  width: 44px;
-  height: 3px;
-  margin: 0.7rem auto 0;
-  border-radius: 2px;
-  background: var(--accent);
+  color: var(--text) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.015em;
+  margin-bottom: 1.4rem !important;
 }
 
 .section-lead {
-  max-width: 760px;
-  margin: 0 auto 2rem;
+  max-width: 740px;
+  margin: 0 auto 2.5rem;
   color: var(--text-muted);
   text-align: center;
-  line-height: 1.7;
+  font-size: 1.06rem;
+  line-height: 1.75;
+  text-wrap: pretty;
+}
+
+.section-lead strong {
+  color: var(--text);
 }
 
 .abstract-text {
-  max-width: 760px;
+  max-width: 740px;
   margin: 0 auto;
-  font-size: 1.05rem;
+  font-size: 1.06rem;
   line-height: 1.8;
-  text-align: left;
+  text-align: justify;
+  hyphens: auto;
 }
 
 .gray-shade {
   background-color: var(--shade);
-  padding: 0 0.2em;
-  border-radius: 3px;
+  padding: 0 0.25em;
+  border-radius: 4px;
+  color: var(--text);
 }
 
 
 /* ---------- Figures ---------- */
 
-.teaser {
-  font-family: 'Google Sans', 'Noto Sans', sans-serif;
-  padding-top: 1rem;
-}
-
 .paper-figure {
-  margin: 0 auto 2.5rem;
+  margin: 0 auto 3.5rem;
 }
 
 .paper-figure:last-of-type {
@@ -162,11 +314,16 @@ body {
 
 .figure-scroll {
   overflow-x: auto;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: #fff;
-  box-shadow: var(--shadow);
   padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: #fff;
+  box-shadow: var(--shadow-md);
+  transition: box-shadow 0.3s;
+}
+
+.figure-scroll:hover {
+  box-shadow: var(--shadow-lg);
 }
 
 .figure-scroll a {
@@ -182,117 +339,19 @@ body {
 
 .paper-figure figcaption {
   max-width: 760px;
-  margin: 0.9rem auto 0;
+  margin: 1.1rem auto 0;
   text-align: center;
   color: var(--text-muted);
-  font-size: 0.98rem;
-  line-height: 1.6;
-}
-
-.paper-figure figcaption.figure-note {
-  font-size: 0.85rem;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  text-wrap: pretty;
 }
 
 .scroll-hint {
   margin-top: 1rem;
   text-align: center;
-  color: var(--text-muted);
-  font-size: 0.85rem;
-}
-
-/* Wide multi-panel figures stay legible on phones: keep a readable
-   minimum width and let the frame scroll sideways instead of shrinking. */
-@media screen and (max-width: 768px) {
-  .section-lead {
-    text-align: left;
-  }
-  .figure-scroll img {
-    min-width: 720px;
-  }
-  /* Denser phone layout: Bulma sizes are rem-based, so a smaller root
-     scales titles, body text, buttons and spacing together. */
-  html {
-    font-size: 14px;
-  }
-  .section {
-    padding: 2.25rem 0.9rem;
-  }
-  .publication-hero .hero-body {
-    padding: 2.25rem 0.9rem 1rem;
-  }
-  .publication-venue {
-    margin-bottom: 0.9rem;
-    font-size: 0.85rem;
-  }
-  .title.publication-title:not(:last-child) {
-    margin-bottom: 1rem;
-  }
-  .publication-authors {
-    font-size: 1.05rem;
-  }
-  .publication-affiliations {
-    font-size: 0.85rem;
-    line-height: 1.5;
-  }
-  .publication-links {
-    margin-top: 1.1rem;
-  }
-  .publication-links .button {
-    font-size: 0.9rem;
-  }
-  .section-title {
-    font-size: 1.6rem !important;
-    margin-bottom: 1.25rem !important;
-  }
-  .section-title::after {
-    margin-top: 0.5rem;
-  }
-  .section-lead {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin-bottom: 1.25rem;
-  }
-  .abstract-text {
-    font-size: 0.95rem;
-    line-height: 1.65;
-  }
-  .paper-figure {
-    margin-bottom: 1.5rem;
-  }
-  .figure-scroll {
-    padding: 0.6rem;
-  }
-  .paper-figure figcaption {
-    font-size: 0.85rem;
-    margin-top: 0.6rem;
-  }
-  .compare-card {
-    padding: 1rem 0.75rem;
-  }
-  .compare-controls .select select {
-    font-size: 0.85rem;
-  }
-  .method-pickers {
-    gap: 0.4rem;
-  }
-  .method-pickers .select {
-    flex: 1 1 0;
-  }
-  .method-pickers .select select {
-    padding-left: 0.7em;
-    padding-right: 1.9em;
-  }
-  /* Only phones scroll the table, so only they need an edge on the
-     sticky method column; desktop keeps the rules-only look. */
-  .results-table .col-method {
-    box-shadow: 1px 0 0 var(--border);
-  }
-  .results-table-wrap {
-    padding: 0.6rem 0.5rem;
-  }
-  .table-legend {
-    padding: 0 0.5rem;
-  }
+  color: #94a3b8;
+  font-size: 0.82rem;
 }
 
 
@@ -303,9 +362,9 @@ body {
   margin: 0 auto;
   padding: 1.5rem;
   border: 1px solid var(--border);
-  border-radius: var(--radius);
+  border-radius: var(--radius-lg);
   background: #fff;
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-md);
 }
 
 .compare-controls {
@@ -386,8 +445,8 @@ body {
 .compare-hint {
   margin-top: 1rem;
   text-align: center;
-  color: var(--text-muted);
-  font-size: 0.8rem;
+  color: #94a3b8;
+  font-size: 0.82rem;
 }
 
 /* Method Comparison slider: the two method names normally live inside the
@@ -404,7 +463,7 @@ body {
   border-radius: 999px;
   background: rgba(0, 0, 0, 0.6);
   color: #fff;
-  font-family: 'Noto Sans', sans-serif;
+  font-family: inherit;
   font-size: 0.8rem;
   line-height: 1.5;
 }
@@ -425,19 +484,19 @@ body {
   overflow-x: auto;
   padding: 0.9rem 1.1rem;
   border: 1px solid var(--border);
-  border-radius: var(--radius);
+  border-radius: var(--radius-lg);
   background: #fff;
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-md);
 }
 
 .results-table {
   width: 100%;
   min-width: 760px;
   border-collapse: collapse;
-  border-top: 1.5px solid #3b4553;
-  border-bottom: 1.5px solid #3b4553;
+  border-top: 1.5px solid #334155;
+  border-bottom: 1.5px solid #334155;
   background: transparent;
-  color: var(--text);
+  color: var(--text-body);
   font-size: 0.85rem;
   font-variant-numeric: tabular-nums;
 }
@@ -453,6 +512,7 @@ table.results-table td {
 }
 
 .results-table thead th {
+  color: var(--text);
   font-weight: 600;
 }
 
@@ -475,7 +535,7 @@ table.results-table td {
 
 .results-table thead tr:last-child th,
 .results-table thead th[rowspan] {
-  border-bottom: 1px solid #3b4553;
+  border-bottom: 1px solid #334155;
 }
 
 .results-table thead tr:last-child th {
@@ -542,6 +602,7 @@ table.results-table td {
 }
 
 .results-table .ours-row .col-method {
+  color: var(--accent);
   font-weight: 700;
 }
 
@@ -580,41 +641,116 @@ table.results-table td {
 
 /* ---------- BibTeX ---------- */
 
+.section-cite {
+  border-top: 1px solid var(--border);
+}
+
 .bibtex-block {
   position: relative;
-  max-width: 820px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
+/* The copy button only overlaps the short first line, so no right-hand gutter is needed. */
 .bibtex-block pre {
   margin: 0;
-  padding: 1.25rem 1.5rem;
-  padding-right: 6.5rem;
+  padding: 1.3rem 1.5rem;
   overflow-x: auto;
-  border: 1px solid var(--border);
+  border: 1px solid var(--accent-line);
   border-radius: var(--radius);
-  background: #fff;
-  color: var(--text);
-  font-size: 0.85rem;
-  line-height: 1.65;
+  background: #f7faff;
+  color: #475569;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  line-height: 1.75;
+  white-space: pre;
 }
 
-.copy-bibtex {
-  position: absolute;
-  top: 0.75rem;
-  right: 0.75rem;
-  z-index: 2;
+.bibtex-block code {
+  background: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  padding: 0;
 }
+
+.bib-type  { color: var(--accent); font-weight: 500; }
+.bib-key   { color: var(--text); }
+.bib-field { color: var(--accent-2); }
+
+.copy-bibtex.button {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.7rem;
+  z-index: 2;
+  border: 1px solid var(--accent-line);
+  background: rgb(255 255 255 / 0.85);
+  color: var(--text-muted);
+  font-weight: 500;
+  box-shadow: none;
+}
+
+.copy-bibtex.button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.copy-bibtex.button.is-success { border-color: #86c5a4; color: #2f7d57; background: #f1faf5; }
+.copy-bibtex.button.is-danger  { border-color: #e7a3a3; color: #a33b3b; background: #fdf3f3; }
 
 
 /* ---------- Footer ---------- */
 
-.footer {
-  padding: 2.5rem 1.5rem;
-  background: #fff;
-  border-top: 1px solid var(--border);
-  color: var(--text-muted);
+.site-footer {
+  padding: 1.6rem 1.5rem 2.2rem;
+  text-align: center;
   font-size: 0.85rem;
+}
+
+.site-footer a {
+  color: var(--text-muted);
+}
+
+.site-footer a:hover {
+  color: var(--accent);
+}
+
+
+/* ---------- Phone ---------- */
+/* Wide multi-panel figures stay legible on phones: keep a readable
+   minimum width and let the frame scroll sideways instead of shrinking. */
+
+@media screen and (max-width: 768px) {
+  /* Denser phone layout: Bulma sizes are rem-based, so a smaller root
+     scales titles, body text, buttons and spacing together. */
+  html { font-size: 14px; }
+  :root { --nav-h: 46px; }
+  .site-nav-inner { padding: 0 0.9rem; gap: 0.75rem; }
+  .site-nav-brand { display: none; }
+  .site-nav-links { margin: 0 auto; }
+  .site-nav-links a { padding: 0.3rem 0.55rem; }
+  .section { padding: 2.75rem 0.9rem; }
+  .publication-hero .hero-body { padding: 2.5rem 0.9rem 1.2rem; }
+  .publication-authors { font-size: 1.02rem; }
+  .publication-affiliations { font-size: 0.85rem; line-height: 1.55; }
+  .section-title { font-size: 1.6rem !important; }
+  .section-lead { text-align: left; font-size: 0.98rem; margin-bottom: 2rem; }
+  .abstract-text { font-size: 0.98rem; line-height: 1.7; text-align: left; }
+  .paper-figure { margin-bottom: 2.25rem; }
+  .figure-scroll { padding: 0.6rem; }
+  .figure-scroll img { min-width: 720px; }
+  .paper-figure figcaption { font-size: 0.88rem; text-align: left; }
+  .compare-card { padding: 1rem 0.75rem; }
+  .compare-controls .select select { font-size: 0.85rem; }
+  .method-pickers { gap: 0.4rem; }
+  .method-pickers .select { flex: 1 1 0; }
+  .method-pickers .select select { padding-left: 0.7em; padding-right: 1.9em; }
+  /* Only phones scroll the table, so only they need an edge on the
+     sticky method column; desktop keeps the rules-only look. */
+  .results-table .col-method { box-shadow: 1px 0 0 var(--border); }
+  .results-table-wrap { padding: 0.6rem 0.5rem; }
+  .table-legend { padding: 0 0.5rem; }
+  .bibtex-block pre { padding: 1rem 1rem; }
 }
 
 

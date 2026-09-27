@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var bibtexCode = document.getElementById('bibtex-code');
   if (!copyBtn || !bibtexCode) return;
 
-  // FontAwesome's JS swaps <i> for <svg>, so feedback goes through the label.
+  // Feedback goes through the text label next to the icon.
   var label = copyBtn.querySelector('.copy-label');
   var resetTimer = null;
 
